@@ -1,0 +1,1 @@
+F:\AndroidStudioProject\flutterdemo\android\buildSrc\build\classes\kotlin\main\Deps.class;F:\AndroidStudioProject\flutterdemo\android\buildSrc\build\classes\kotlin\main\Versions.class

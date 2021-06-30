@@ -1,0 +1,98 @@
+-- Merging decision tree log ---
+application
+INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml:4:5-40:19
+MERGED from [androidx.core:core:1.1.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\d50b4e8d4b0df8229aed76c9432b6198\core-1.1.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.1.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\d50b4e8d4b0df8229aed76c9432b6198\core-1.1.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\38ddb97ea0910d92ff0fcd36aaf621d6\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\38ddb97ea0910d92ff0fcd36aaf621d6\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.1.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\d50b4e8d4b0df8229aed76c9432b6198\core-1.1.0\AndroidManifest.xml:24:18-86
+	android:label
+		INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml
+manifest
+ADDED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml:1:1-41:12
+INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml:1:1-41:12
+INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml:1:1-41:12
+INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml:1:1-41:12
+MERGED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml:1:1-41:12
+MERGED from [androidx.databinding:databinding-adapters:4.2.1] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\c9f3db7c7ca6cb5b88c4d10ca8f43a2b\databinding-adapters-4.2.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.databinding:databinding-runtime:4.2.1] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\e32f749e6022b6c521f92907aed9c2aa\databinding-runtime-4.2.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.databinding:viewbinding:4.2.1] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\cbd214be37b55d380c2c8939506d8db9\viewbinding-4.2.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\20f1f07da63061693fbfa7ab8821cf75\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\d471166a6c070f02f142f583a67fb6a8\jetified-activity-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\ed2157026ace6f4e6dc6812134631806\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\f31f68166ed714555989c8ca1c5b1244\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\40903fdb96556c1b51dec19d95154b91\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.1.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\d50b4e8d4b0df8229aed76c9432b6198\core-1.1.0\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\ab4a94530c21ee66ad52db776939b07f\lifecycle-runtime-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\38ddb97ea0910d92ff0fcd36aaf621d6\versionedparcelable-1.1.0\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\a5a322ea7d1d808a8db9be64963ab165\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\0e0a2f789c4389e406690a021ea34f9b\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\b156e0d27a31c5874fc9766aacf10cf3\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\94c4754bf8c4f997ded035d88b9ea875\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\704551069212466763c744d96d67695e\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
+INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+	package
+		ADDED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml:2:5-35
+		INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml
+		INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\debug\AndroidManifest.xml
+	android:versionName
+		INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml
+		ADDED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml:1:1-41:12
+		INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\debug\AndroidManifest.xml
+	android:versionCode
+		INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml
+		ADDED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml:1:1-41:12
+		INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\debug\AndroidManifest.xml
+	xmlns:android
+		ADDED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml:1:11-69
+uses-sdk
+INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml
+INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml
+MERGED from [androidx.databinding:databinding-adapters:4.2.1] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\c9f3db7c7ca6cb5b88c4d10ca8f43a2b\databinding-adapters-4.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.databinding:databinding-adapters:4.2.1] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\c9f3db7c7ca6cb5b88c4d10ca8f43a2b\databinding-adapters-4.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.databinding:databinding-runtime:4.2.1] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\e32f749e6022b6c521f92907aed9c2aa\databinding-runtime-4.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.databinding:databinding-runtime:4.2.1] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\e32f749e6022b6c521f92907aed9c2aa\databinding-runtime-4.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.databinding:viewbinding:4.2.1] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\cbd214be37b55d380c2c8939506d8db9\viewbinding-4.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.databinding:viewbinding:4.2.1] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\cbd214be37b55d380c2c8939506d8db9\viewbinding-4.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\20f1f07da63061693fbfa7ab8821cf75\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\20f1f07da63061693fbfa7ab8821cf75\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\d471166a6c070f02f142f583a67fb6a8\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\d471166a6c070f02f142f583a67fb6a8\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\ed2157026ace6f4e6dc6812134631806\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\ed2157026ace6f4e6dc6812134631806\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\f31f68166ed714555989c8ca1c5b1244\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\f31f68166ed714555989c8ca1c5b1244\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\40903fdb96556c1b51dec19d95154b91\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\40903fdb96556c1b51dec19d95154b91\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.1.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\d50b4e8d4b0df8229aed76c9432b6198\core-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.1.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\d50b4e8d4b0df8229aed76c9432b6198\core-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\ab4a94530c21ee66ad52db776939b07f\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\ab4a94530c21ee66ad52db776939b07f\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\38ddb97ea0910d92ff0fcd36aaf621d6\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\38ddb97ea0910d92ff0fcd36aaf621d6\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\a5a322ea7d1d808a8db9be64963ab165\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\a5a322ea7d1d808a8db9be64963ab165\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\0e0a2f789c4389e406690a021ea34f9b\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\0e0a2f789c4389e406690a021ea34f9b\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\b156e0d27a31c5874fc9766aacf10cf3\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\b156e0d27a31c5874fc9766aacf10cf3\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\94c4754bf8c4f997ded035d88b9ea875\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\94c4754bf8c4f997ded035d88b9ea875\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\704551069212466763c744d96d67695e\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\shish\.gradle\caches\transforms-2\files-2.1\704551069212466763c744d96d67695e\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
+INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\debug\AndroidManifest.xml
+INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\debug\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml
+		INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\debug\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\main\AndroidManifest.xml
+		INJECTED from F:\AndroidStudioProject\flutterdemo\android\app\src\debug\AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from F:\AndroidStudioProject\flutterdemo\android\app\src\debug\AndroidManifest.xml:6:5-66
+	android:name
+		ADDED from F:\AndroidStudioProject\flutterdemo\android\app\src\debug\AndroidManifest.xml:6:22-64

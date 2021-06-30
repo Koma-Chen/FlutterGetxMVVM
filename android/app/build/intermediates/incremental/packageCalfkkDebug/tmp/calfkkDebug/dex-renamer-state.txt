@@ -1,0 +1,19 @@
+#Thu Jun 24 15:23:32 CST 2021
+path.4=3/classes.dex
+path.3=1/classes.dex
+path.2=11/classes.dex
+path.1=0/classes.dex
+path.5=9/classes.dex
+path.0=classes.dex
+base.4=F\:\\AndroidStudioProject\\flutterdemo\\android\\app\\build\\intermediates\\dex\\calfkkDebug\\mergeProjectDexCalfkkDebug\\3\\classes.dex
+base.3=F\:\\AndroidStudioProject\\flutterdemo\\android\\app\\build\\intermediates\\dex\\calfkkDebug\\mergeProjectDexCalfkkDebug\\1\\classes.dex
+base.2=F\:\\AndroidStudioProject\\flutterdemo\\android\\app\\build\\intermediates\\dex\\calfkkDebug\\mergeProjectDexCalfkkDebug\\11\\classes.dex
+base.1=F\:\\AndroidStudioProject\\flutterdemo\\android\\app\\build\\intermediates\\dex\\calfkkDebug\\mergeProjectDexCalfkkDebug\\0\\classes.dex
+base.0=F\:\\AndroidStudioProject\\flutterdemo\\android\\app\\build\\intermediates\\dex\\calfkkDebug\\mergeExtDexCalfkkDebug\\classes.dex
+renamed.3=classes4.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+renamed.5=classes6.dex
+renamed.4=classes5.dex
+base.5=F\:\\AndroidStudioProject\\flutterdemo\\android\\app\\build\\intermediates\\dex\\calfkkDebug\\mergeProjectDexCalfkkDebug\\9\\classes.dex

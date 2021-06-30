@@ -1,0 +1,18 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/koma/flutterdemo/BuildConfig.java
+ com.koma.flutterdemo.BuildConfig
+androidx/databinding/DataBinderMapperImpl.java
+ androidx.databinding.DataBinderMapperImpl
+com/koma/flutterdemo/BR.java
+ com.koma.flutterdemo.BR
+androidx/databinding/library/baseAdapters/BR.java
+ androidx.databinding.library.baseAdapters.BR
+androidx/databinding/DataBindingComponent.java
+ androidx.databinding.DataBindingComponent
+com/koma/flutterdemo/DataBindingTriggerClass.java
+ com.koma.flutterdemo.DataBindingTriggerClass
+com/koma/flutterdemo/DataBinderMapperImpl.java
+ com.koma.flutterdemo.DataBinderMapperImpl
+ com.koma.flutterdemo.DataBinderMapperImpl$InnerBrLookup
+ com.koma.flutterdemo.DataBinderMapperImpl$InnerLayoutIdLookup
