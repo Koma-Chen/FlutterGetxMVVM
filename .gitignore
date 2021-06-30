@@ -48,4 +48,4 @@ app.*.map.json
 /android/build
 local.properties
 /android/buildSrc/build/
-/android/buildSrc/.gradle/
+/android/buildSrc/.gradle
