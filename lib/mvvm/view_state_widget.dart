@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/config/resource_mananger.dart';
 import 'package:flutterdemo/mvvm/base/base_view_model.dart';
 import 'package:flutterdemo/widget/image_extended.dart';
-import 'package:flutterdemo/util/size_adapted/size_adapt_util.dart';
+import 'package:flutterdemo/util/extension/extension_util.dart';
 import 'package:flutterdemo/widget/text/text_common.dart';
 
 Widget viewStateBuilder(

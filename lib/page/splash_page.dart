@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 class SplashPage extends StatefulWidget {
   @override
-  SplashPageState createState() => new SplashPageState();
+  SplashPageState createState() => SplashPageState();
 }
 
 class SplashPageState extends State<SplashPage>
@@ -18,8 +18,8 @@ class SplashPageState extends State<SplashPage>
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 1),
-        () => Get.toNamed(RouteName.mainPage.toString()));
+    Future.delayed(const Duration(seconds: 1),
+        () => Get.offAndToNamed(RouteName.mainPage.toString()));
   }
 
   @override

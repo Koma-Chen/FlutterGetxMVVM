@@ -9,7 +9,7 @@ import 'package:flutterdemo/event/pause_timer_event.dart';
 import 'package:flutterdemo/event/resume_timer_event.dart';
 import 'package:flutterdemo/util/event_bus_util.dart';
 import 'package:flutterdemo/util/margin_padding_util.dart';
-import 'package:flutterdemo/util/size_adapted/size_adapt_util.dart';
+import 'package:flutterdemo/util/extension/extension_util.dart';
 import 'package:flutterdemo/widget/button_common.dart';
 
 class OnlineCoinQrCodeWidget extends StatefulWidget {

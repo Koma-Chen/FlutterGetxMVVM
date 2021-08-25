@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutterdemo/mvvm/view_state.dart';
+import 'package:flutterdemo/widget/dialog/dialog_helper.dart';
 import 'package:flutterdemo/widget/toast_util.dart';
 import 'package:get/get.dart';
-import 'package:oktoast/oktoast.dart';
+import 'package:flutterdemo/util/extension/extension_util.dart';
 
 class BaseViewModel extends GetxController {
   /// 防止页面销毁后,异步任务才完成,导致报错
@@ -46,22 +48,20 @@ class BaseViewModel extends GetxController {
 
   bool get unAuthorized => viewState == ViewState.unAuthorized;
 
-  ToastFuture? future;
-
   void setIdle() {
     viewState = ViewState.idle;
-    future?.dismiss();
+    SmartDialog.dismiss();
   }
 
   void setBusy({String? title, int? seconds}) {
     // viewState = ViewState.busy;
 
-    future = ToastUtil.showLoading(title: title);
+    ToastUtil.showLoading(title: title??"加载中...");
   }
 
   void setEmpty() {
     viewState = ViewState.empty;
-    future?.dismiss();
+    DialogHelper.dismiss();
   }
 
   void setUnAuthorized() {
@@ -74,7 +74,7 @@ class BaseViewModel extends GetxController {
 
   // [e]分类Error和Exception两种
   void setError(dynamic e, dynamic stackTrace, {String? message}) {
-    future?.dismiss();
+    DialogHelper.dismiss();
     if (e.toString().contains("NotSuccessException")) {
       return;
     }
@@ -92,22 +92,22 @@ class BaseViewModel extends GetxController {
   }
 
   // 显示错误消息
-  showErrorMessage({String? message}) {
+  void showErrorMessage({String? message}) {
     if (viewStateError != null || message != null) {}
   }
 
   @override
-  void dispose() {
+  void onClose() {
     setIdle();
     disposed = true;
-    print('view_state_model dispose -->$runtimeType');
-    super.dispose();
+    'view_state_model onClose -->$runtimeType'.printString();
+    super.onClose();
   }
 }
 
 // [e]为错误类型 :可能为 Error , Exception ,String
 // [s]为堆栈信息
-printErrorStack(dynamic e, dynamic s) {
+void printErrorStack(dynamic e, dynamic s) {
   print('''
 <-----↓↓↓↓↓↓↓↓↓↓-----error-----↓↓↓↓↓↓↓↓↓↓----->
 $e

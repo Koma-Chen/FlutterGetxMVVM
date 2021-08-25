@@ -8,35 +8,35 @@ class HttpResponse {
   HttpResponse._internal({this.ok = false});
 
   HttpResponse.success(this.data) {
-    this.ok = true;
+    ok = true;
   }
 
   HttpResponse.failure({String? errorMsg, int? errorCode}) {
-    this.error = BadRequestException(message: errorMsg, code: errorCode);
-    this.ok = false;
+    error = BadRequestException(message: errorMsg, code: errorCode);
+    ok = false;
   }
 
   HttpResponse.failureFormResponse({dynamic data}) {
-    this.error = BadResponseException(data);
-    this.ok = false;
+    error = BadResponseException(data);
+    ok = false;
   }
 
   HttpResponse.failureFromError([HttpException? error]) {
     this.error = error ?? UnknownException();
-    this.ok = false;
+    ok = false;
   }
 }
 
 /// 子类需要重写
-abstract class BaseResponseData {
-  int? code = 0;
-  dynamic data = "";
-  String? msg = "";
-
-  BaseResponseData({this.code, this.data, this.msg});
-
-  @override
-  String toString() {
-    return 'BaseResponseData{code: $code, data: $data, msg: $msg}';
-  }
-}
+// abstract class BaseResponseData {
+//   int? code = 0;
+//   dynamic data = "";
+//   String? msg = "";
+//
+//   BaseResponseData({this.code, this.data, this.msg});
+//
+//   @override
+//   String toString() {
+//     return 'BaseResponseData{code: $code, data: $data, msg: $msg}';
+//   }
+// }

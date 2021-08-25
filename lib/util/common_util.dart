@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/config/constant.dart';
-import 'package:flutterdemo/util/size_adapted/size_adapt_util.dart';
+import 'package:flutterdemo/util/extension/extension_util.dart';
 
 class CommonUtils {
   static double formatNum(double num, int postion) {

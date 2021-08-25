@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/config/resource_mananger.dart';
 import 'package:flutterdemo/util/margin_padding_util.dart';
-import 'package:flutterdemo/util/size_adapted/size_adapt_util.dart';
+import 'package:flutterdemo/util/extension/extension_util.dart';
 import 'package:flutterdemo/widget/text/text_common.dart';
 
 // ignore: must_be_immutable
