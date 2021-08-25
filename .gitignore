@@ -49,3 +49,4 @@ app.*.map.json
 local.properties
 /android/buildSrc/build/
 /android/buildSrc/.gradle
+pubspec.lock
