@@ -29,7 +29,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  get: ^4.3.6
+  get: ^4.3.8
   dio: ^4.0.0
   logger: ^1.0.0
   pull_to_refresh: ^2.0.0
@@ -38,14 +38,15 @@ dependencies:
   flutter_datetime_picker: ^1.5.1
   flutter_picker: ^2.0.2
   permission_handler: ^8.1.4+2
-  image_picker: ^0.8.3+2
+  permission: ^0.1.7
+  image_picker: ^0.8.3+3
   flutter_screenutil: ^5.0.0+2
   after_layout: ^1.1.0
   responsive_framework: ^0.1.4
   connectivity: ^3.0.6
   file_picker: ^4.0.0
-  wechat_camera_picker: ^2.3.0
-  wechat_assets_picker: ^6.0.2
+  wechat_camera_picker: ^2.3.1
+  wechat_assets_picker: ^6.0.5
   flutter_staggered_animations: ^1.0.0
   qr_flutter: ^4.0.0
   qr_code_scanner: ^0.5.2
