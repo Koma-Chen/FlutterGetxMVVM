@@ -6,7 +6,7 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutterdemo/config/resource_mananger.dart';
 import 'package:flutterdemo/config/route_config.dart';
 import 'package:flutterdemo/page/splash_page.dart';
-import 'package:flutterdemo/util/AddressManager.dart';
+import 'package:flutterdemo/util/address_manager.dart';
 import 'package:flutterdemo/util/http/http_client.dart';
 import 'package:flutterdemo/util/http/http_config.dart';
 import 'package:get/get.dart';

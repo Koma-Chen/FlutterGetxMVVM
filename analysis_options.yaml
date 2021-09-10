@@ -5,6 +5,9 @@ analyzer:
     missing_required_param: warning
     missing_return: warning
     todo: ignore
+    deprecated_member_use_from_same_package: ignore
+    sdk_version_async_exported_from_core: ignore
+    unnecessary_null_comparison: ignore
 
 linter:
   rules:
@@ -17,7 +20,6 @@ linter:
     - avoid_empty_else
     - avoid_escaping_inner_quotes
     - avoid_field_initializers_in_const_classes
-    - avoid_function_literals_in_foreach_calls
     - avoid_implementing_value_types
     - avoid_init_to_null
     - avoid_null_checks_in_equality_operators

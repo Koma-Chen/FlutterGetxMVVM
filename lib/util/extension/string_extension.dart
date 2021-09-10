@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/util/log_util.dart';
-import 'package:flutterdemo/widget/toast_util.dart';
+import 'package:flutterdemo/util/toast_util.dart';
 
 extension StringExtension on String {
   double get parseDouble {

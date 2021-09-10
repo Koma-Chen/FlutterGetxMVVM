@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutterdemo/util/AddressManager.dart';
+import 'package:flutterdemo/util/address_manager.dart';
 import 'package:flutterdemo/util/http/http_client.dart';
 import 'package:get/get.dart';
 

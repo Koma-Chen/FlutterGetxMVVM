@@ -39,34 +39,16 @@ class CommonUtils {
   }
 
   static bool fileIsImage(String url) {
-    if (url.endsWith("png") ||
-        url.contains("jpg") ||
-        url.endsWith("PNG") ||
-        url.endsWith("JPG") ||
-        url.endsWith("JPEG") ||
-        url.endsWith("jpeg"))
+    final String urlResult = url.toLowerCase().toLowerCase();
+    if (urlResult.endsWith("png") ||
+        urlResult.contains("jpg") ||
+        urlResult.endsWith("PNG") ||
+        urlResult.endsWith("JPG") ||
+        urlResult.endsWith("JPEG") ||
+        urlResult.endsWith("jpeg")) {
       return true;
-    else
+    } else {
       return false;
-  }
-
-  static Widget getBottomPadding() {
-    return Platform.isAndroid ? 170.heightBoxAdapter : 200.heightBoxAdapter;
-  }
-
-  static String getNetImgUrl(String img) {
-    return "${Constant.QI_NIU_PREFIX}$img.png";
-  }
-
-  static String getSubStr(String data, int position) {
-    return data.length > position ? "${data.substring(0, 10)}..." : data;
-  }
-
-  static List<FocusNode> createFocusNode(int num) {
-    List<FocusNode> result = [];
-    for (int i = 0; i < num; i++) {
-      result.add(new FocusNode());
     }
-    return result;
   }
 }

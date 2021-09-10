@@ -270,8 +270,6 @@ class ImageCommon extends StatelessWidget {
     Widget result = Container();
     String? urlTemp = url;
     if (urlTemp == null) return result;
-    if (urlTemp.contains("internet"))
-      urlTemp = CommonUtils.getNetImgUrl(urlTemp);
     if (File(urlTemp).existsSync()) {
       result = ImageFile(urlTemp,
           width: width,

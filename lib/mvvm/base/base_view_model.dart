@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutterdemo/mvvm/view_state.dart';
 import 'package:flutterdemo/widget/dialog/dialog_helper.dart';
-import 'package:flutterdemo/widget/toast_util.dart';
+import 'package:flutterdemo/util/toast_util.dart';
 import 'package:get/get.dart';
 import 'package:flutterdemo/util/extension/extension_util.dart';
 
