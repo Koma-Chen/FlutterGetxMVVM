@@ -15,7 +15,7 @@ class MainViewModel extends BaseViewModel {
   Future<bool> login() async {
     try {
       setBusy();
-      bean = await Repository.login<LoginBean>("13243756407", 666666, "", "", "");
+      bean = await Repository.login<LoginBean>("13243756408", 666666, "", "", "");
       return true;
     } on DioError catch (e) {
       debugPrint("登录失败:${jsonDecode(e.response.toString())['errorMessage']}");

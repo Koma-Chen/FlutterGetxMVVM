@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutterdemo/mvvm/view_state.dart';
 import 'package:flutterdemo/widget/dialog/dialog_helper.dart';
@@ -10,7 +11,7 @@ class BaseViewModel extends GetxController {
   /// 防止页面销毁后,异步任务才完成,导致报错
   bool disposed = false;
 
-  /// 当前的页面状态,默认为busy,可在viewModel的构造方法中指定;
+  /// 当前的页面状态,默认为idle,可在viewModel的构造方法中指定;
   ViewState _viewState = ViewState.idle;
 
   /// 根据状态构造
@@ -19,7 +20,7 @@ class BaseViewModel extends GetxController {
   /// FooModel():super(viewState:ViewState.busy);
   BaseViewModel({ViewState? viewState})
       : _viewState = viewState ?? ViewState.idle {
-    print('ViewStateModel---constructor--->$runtimeType');
+    debugPrint('ViewStateModel---constructor--->$runtimeType');
   }
 
   ViewState get viewState => _viewState;
@@ -56,7 +57,7 @@ class BaseViewModel extends GetxController {
   void setBusy({String? title, int? seconds}) {
     // viewState = ViewState.busy;
 
-    ToastUtil.showLoading(title: title??"加载中...");
+    ToastUtil.showLoading(title: title ?? "加载中...");
   }
 
   void setEmpty() {

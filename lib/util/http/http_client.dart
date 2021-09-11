@@ -8,6 +8,7 @@ import 'package:flutterdemo/util/http/default_http_transformer.dart';
 import 'package:flutterdemo/util/http/http_config.dart';
 import 'package:flutterdemo/util/http/http_exception.dart';
 import 'package:flutterdemo/util/http/http_response.dart';
+import 'package:flutterdemo/util/log_util.dart';
 
 class HttpClient {
   late final AppDio _dio;
@@ -43,20 +44,22 @@ class HttpClient {
       ProgressCallback? onSendProgress,
       ProgressCallback? onReceiveProgress,
       HttpTransformer? httpTransformer}) async {
-    // try {
-    final response = await _dio.post(
-      uri,
-      data: data,
-      queryParameters: queryParameters,
-      options: options,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-    return JsonConvert.fromJsonAsT<T>(jsonDecode(response.toString())['data']);
-    // } on Exception catch (e) {
-    //   throw _parseException(e);
-    // }
+    try {
+      final response = await _dio.post(
+        uri,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress,
+      );
+      // return ;
+      return JsonConvert.fromJsonAsT<T>(
+          handleResponse<T>(response, httpTransformer: httpTransformer).data);
+    } on Exception catch (e) {
+      throw _parseException(e);
+    }
   }
 
   Future<HttpResponse> patch(String uri,
@@ -151,7 +154,7 @@ class HttpClient {
     }
   }
 
-  HttpResponse handleResponse(Response? response,
+  HttpResponse handleResponse<T>(Response? response,
       {HttpTransformer? httpTransformer}) {
     httpTransformer ??= DefaultHttpTransformer.getInstance();
 
@@ -169,6 +172,7 @@ class HttpClient {
     if (_isRequestSuccess(response.statusCode)) {
       return httpTransformer.parse(response);
     } else {
+      LogUtil.d("response.statusMessage：${response.statusMessage}");
       // 接口调用失败
       return HttpResponse.failure(
           errorMsg: response.statusMessage, errorCode: response.statusCode);

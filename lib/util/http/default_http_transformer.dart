@@ -23,7 +23,7 @@ class DefaultHttpTransformer extends HttpTransformer {
     } else {
       json = response.data;
     }
-    final ResponseData respData = ResponseData.fromJson(json);
+    final DefaultResponseData respData = DefaultResponseData.fromJson(json);
     response.data = respData.data;
     return HttpResponse.success(response.data);
   }
@@ -52,8 +52,8 @@ abstract class BaseResponseData {
   }
 }
 
-class ResponseData extends BaseResponseData {
-  ResponseData.fromJson(Map<String, dynamic> json) {
+class DefaultResponseData extends BaseResponseData {
+  DefaultResponseData.fromJson(Map<String, dynamic> json) {
     data = json['data'] ?? {};
     msg = json['errorMessage'];
     code = json['code'];
