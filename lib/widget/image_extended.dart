@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/util/common_util.dart';
+import 'package:flutterdemo/widget/my_click_event.dart';
 
 class ImageNetwork extends StatelessWidget {
   final String? url;
@@ -251,15 +251,15 @@ class ImageCommon extends StatelessWidget {
   final BlendMode? colorBlendMode;
   final Color? color;
 
-  ImageCommon(this.url,
+  const ImageCommon(this.url,
       {this.size,
       this.width,
       this.height,
       this.borderRadius,
       this.circular,
-      this.circle: false,
-      this.fit: BoxFit.cover,
-      this.avatar: false,
+      this.circle = false,
+      this.fit = BoxFit.cover,
+      this.avatar = false,
       this.errImage,
       this.onPress,
       this.colorBlendMode,
@@ -268,18 +268,9 @@ class ImageCommon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget result = Container();
-    String? urlTemp = url;
+    final String? urlTemp = url;
     if (urlTemp == null) return result;
-    if (File(urlTemp).existsSync()) {
-      result = ImageFile(urlTemp,
-          width: width,
-          height: height,
-          size: size,
-          borderRadius: borderRadius,
-          circle: circle,
-          circular: circular,
-          fit: fit);
-    } else if (urlTemp.contains("http")) {
+    if (urlTemp.contains("http")) {
       result = ImageNetwork(urlTemp,
           width: width,
           height: height,
@@ -302,6 +293,6 @@ class ImageCommon extends StatelessWidget {
           fit: fit);
     }
 
-    return GestureDetector(child: result, onTap: onPress);
+    return MyGestureDetector(onTap: onPress, child: result);
   }
 }

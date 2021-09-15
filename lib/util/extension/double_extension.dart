@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/util/ScreenAdapter.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 extension DoubleFit on double {
   double get width {
-    return ScreenAdapter.setWidth(toDouble());
+    return ScreenUtil().setWidth(toDouble());
   }
 
-  double get responsiveSize {
-    return ScreenAdapter.setSp(toDouble());
+  double get height {
+    return ScreenUtil().setHeight(toDouble());
+  }
+
+  double get sp {
+    return ScreenUtil().setSp(toDouble());
   }
 
   SizedBox get heightBox {
-    return heightBoxAdapter;
-  }
-
-  SizedBox get heightBoxAdapter {
     return SizedBox(
-      height: heightAdapter,
+      height: height,
     );
   }
 
@@ -24,9 +24,5 @@ extension DoubleFit on double {
     return SizedBox(
       width: width,
     );
-  }
-
-  double get heightAdapter {
-    return ScreenAdapter.setHeight(toDouble());
   }
 }

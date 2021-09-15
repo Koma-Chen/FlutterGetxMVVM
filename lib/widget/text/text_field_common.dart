@@ -33,7 +33,7 @@ class TextFieldCommon extends StatelessWidget {
   final int? doubleLength;
   final int? maxLetters;
 
-  TextFieldCommon(
+  const TextFieldCommon(
       {Key? key,
       // @required this.text,
       required this.controller,
@@ -67,6 +67,9 @@ class TextFieldCommon extends StatelessWidget {
       alignment: Alignment.topLeft,
       height: height ?? 50,
       width: width ?? 50,
+      decoration: BoxDecoration(
+          color: backgroundColor ?? Colors.transparent,
+          borderRadius: BorderRadius.circular(borderRadius ?? 0)),
       child: Row(
         children: <Widget>[
           // SizedBox(width: 15),
@@ -80,7 +83,7 @@ class TextFieldCommon extends StatelessWidget {
                   color: hintColor ?? ColorsHelper.nineColor,
                   fontSize: hintSize),
               onChanged: onChanged,
-              fontSize: size ?? 24.responsiveFont,
+              fontSize: size ?? 24.sp,
               backgroundColor: Colors.transparent,
               enabled: enable,
               textAlign: align,
@@ -109,9 +112,6 @@ class TextFieldCommon extends StatelessWidget {
           ),
         ],
       ),
-      decoration: BoxDecoration(
-          color: backgroundColor ?? Colors.transparent,
-          borderRadius: BorderRadius.circular(borderRadius ?? 0)),
     );
   }
 }

@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/config/resource_mananger.dart';
 import 'package:flutterdemo/mvvm/base/base_view_model.dart';
-import 'package:flutterdemo/widget/image_extended.dart';
 import 'package:flutterdemo/util/extension/extension_util.dart';
+import 'package:flutterdemo/widget/image_extended.dart';
 import 'package:flutterdemo/widget/text/text_common.dart';
 
 Widget viewStateBuilder(
@@ -75,14 +75,14 @@ class ViewStateEmptyWidget extends StatelessWidget {
                 ImageCommon(
                   emptyImageStr ?? 'img_common_empty',
                   width: 200.width,
-                  height: 300.heightAdapter,
+                  height: 300.height,
                 ),
-                13.heightBoxAdapter,
+                13.heightBox,
                 TextCommon(
                   '内容空空如也~',
                   color: ColorsHelper.nineColor,
                   size: 26,
-                  height: 37,
+                  lineHeight: 37,
                 ),
               ],
             ),
@@ -99,7 +99,7 @@ class ViewStateErrorWidget extends StatelessWidget {
   final VoidCallback? onTap;
   final double paddingHeight;
 
-  ViewStateErrorWidget(
+  const ViewStateErrorWidget(
       {Key? key,
       this.image,
       this.message,
@@ -115,34 +115,29 @@ class ViewStateErrorWidget extends StatelessWidget {
       color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          paddingHeight.heightBoxAdapter,
+          paddingHeight.heightBox,
           image ??
               ImageCommon(
                 'img_error_page',
-                size: 292.imageSize,
+                size: 292.sp,
               ),
-          9.heightBoxAdapter,
+          9.heightBox,
           TextCommon(
             message ?? '请求出错,请点重新加载试试~',
             size: 26,
-            height: 37,
+            lineHeight: 37,
             color: ColorsHelper.threeColor,
           ),
-          20.heightBoxAdapter,
+          20.heightBox,
           GestureDetector(
             behavior: HitTestBehavior.opaque,
+            onTap: onTap,
             child: Container(
               width: 250.width,
               height: 88.height,
               alignment: Alignment.center,
-              child: TextCommon(
-                "重新加载",
-                size: 30,
-                color: Colors.white,
-              ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(45)),
                 gradient: LinearGradient(
@@ -151,8 +146,12 @@ class ViewStateErrorWidget extends StatelessWidget {
                     colors: [Color(0xFFFCFFAF), Color(0xFF919212)],
                     stops: [0, 1]),
               ),
+              child: TextCommon(
+                "重新加载",
+                size: 30,
+                color: Colors.white,
+              ),
             ),
-            onTap: onTap,
           )
         ],
       ),

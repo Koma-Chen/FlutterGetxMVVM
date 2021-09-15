@@ -14,8 +14,7 @@ class TextCommon extends StatelessWidget {
   final bool center;
   final int maxLines;
   final TextDecoration? decoration;
-  final double? height;
-  final double? ptSize;
+  final double? lineHeight;
   final TextStyle? style;
   final TextAlign? align;
   final Key? key;
@@ -32,19 +31,18 @@ class TextCommon extends StatelessWidget {
       this.medium = false,
       this.maxLines = 1,
       this.decoration,
-      this.height,
+      this.lineHeight,
       this.style,
       this.key,
       this.align,
       this.fontWeight,
-      this.ptSize,
       this.shadow});
 
   @override
   Widget build(BuildContext context) {
     return Text(text,
         key: key,
-        textAlign: align ?? (center ? TextAlign.center : TextAlign.start),
+        textAlign: align,
         maxLines: maxLines,
         overflow: TextOverflow.ellipsis,
         softWrap: softWrap,
@@ -52,17 +50,11 @@ class TextCommon extends StatelessWidget {
             TextStyle(
                 decoration: decoration,
                 color: color ?? ColorsHelper.sixColor,
-                fontSize: ptSize ??
-                    (size == null ? 24.responsiveFont : size?.responsiveSize),
-                fontWeight: heavy
-                    ? FontWeight.w900
-                    : (bold
-                        ? FontWeight.bold
-                        : (medium
-                            ? FontWeight.w500
-                            : (fontWeight ?? FontWeight.normal))),
-                height:
-                    height == null ? 1.2 : ((height ?? 0) / (size ?? 1)) * 1.0,
+                fontSize: size?.sp,
+                fontWeight: fontWeight,
+                height: lineHeight == null
+                    ? 1.0
+                    : ((lineHeight ?? 0) / (size ?? 1)) * 1.0,
                 shadows: shadow ?? []));
   }
 }

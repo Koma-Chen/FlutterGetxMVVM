@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutterdemo/util/ScreenAdapter.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MarginPaddingUtil {
   static EdgeInsetsGeometry only(
@@ -10,17 +10,8 @@ class MarginPaddingUtil {
     return fromLTRB(left: left, top: top, right: right, bottom: bottom);
   }
 
-  static EdgeInsetsGeometry onlyAdapterHeight(
-      {double left = 0.0,
-      double top = 0.0,
-      double right = 0.0,
-      double bottom = 0.0}) {
-    return fromLTRBAdapterHeight(
-        left: left, top: top, right: right, bottom: bottom);
-  }
-
   static EdgeInsets all(double margin) {
-    return EdgeInsets.all(ScreenAdapter.setWidth(margin));
+    return EdgeInsets.all(ScreenUtil().setSp(margin));
   }
 
   static EdgeInsets fromLTRB(
@@ -28,20 +19,17 @@ class MarginPaddingUtil {
       required double top,
       required double right,
       required double bottom}) {
-    return fromLTRBAdapterHeight(left: left, top: top, right: right, bottom: bottom);
-    // return EdgeInsets.fromLTRB(left, top, right, bottom);
+    return EdgeInsets.only(
+        left: ScreenUtil().setWidth(left),
+        top: ScreenUtil().setHeight(top),
+        right: ScreenUtil().setWidth(right),
+        bottom: ScreenUtil().setHeight(bottom));
   }
 
-  static EdgeInsets fromLTRBAdapterHeight(
-      {required double left,
-      required double top,
-      required double right,
-      required double bottom}) {
-    return EdgeInsets.only(
-        left: ScreenAdapter.getWidth(width: left),
-        top: ScreenAdapter.setHeight(top),
-        right: ScreenAdapter.getWidth(width: right),
-        bottom: ScreenAdapter.setHeight(bottom));
-    // return EdgeInsets.fromLTRB(left, top, right, bottom);
+  static EdgeInsets symmetric(
+      {required double vertical, required double horizontal}) {
+    return EdgeInsets.symmetric(
+        vertical: ScreenUtil().setWidth(vertical),
+        horizontal: ScreenUtil().setHeight(horizontal));
   }
 }

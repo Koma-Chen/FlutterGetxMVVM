@@ -44,7 +44,7 @@ class ButtonCommon extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         child: Container(
-            height: height ?? 50.heightAdapter,
+            height: height ?? 50.height,
             decoration: boxDecoration ??
                 BoxDecoration(
                     color: color ?? ColorsHelper.primaryColor,
@@ -58,7 +58,7 @@ class ButtonCommon extends StatelessWidget {
                     size: fontSize,
                     fontWeight: fontWeight,
                     color: fontColor,
-                    height: fontHeight))));
+                    lineHeight: fontHeight))));
   }
 }
 
@@ -103,23 +103,23 @@ class OutlineButtonCommon extends StatelessWidget {
     return GestureDetector(
         child: Container(
             width: width ?? ScreenUtil().screenWidth,
-            height: height ?? 50.heightAdapter,
+            height: height ?? 50.height,
             alignment: Alignment.center,
             margin: margin,
             padding: padding ?? MarginPaddingUtil.all(10),
-            child: TextCommon(
-              text ?? "",
-              size: fontSize,
-              height: fontHeight,
-              color: textColor,
-              fontWeight: fontWeight,
-            ),
             decoration: boxDecoration ??
                 BoxDecoration(
                     color: backgroundColor ?? Colors.transparent,
                     border: Border.all(
                         color: borderColor ?? Color(0xFFE5E5E5),
                         width: borderWidth ?? 1),
-                    borderRadius: BorderRadius.circular(borderRadios ?? 5))));
+                    borderRadius: BorderRadius.circular(borderRadios ?? 5)),
+            child: TextCommon(
+              text ?? "",
+              size: fontSize,
+              lineHeight: fontHeight,
+              color: textColor,
+              fontWeight: fontWeight,
+            )));
   }
 }

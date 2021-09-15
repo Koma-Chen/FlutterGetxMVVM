@@ -1,4 +1,4 @@
-import 'package:flutterdemo/model/login/login_bean.dart';
+import 'package:flutterdemo/bean/login/login_bean.dart';
 
 loginBeanFromJson(LoginBean data, Map<String, dynamic> json) {
 	if (json['expire'] != null) {

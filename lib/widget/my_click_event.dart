@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyGestureDetector extends StatefulWidget {
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final Widget child;
   final int? period;
   final HitTestBehavior? behavior;
@@ -42,11 +42,12 @@ class MyGestureDetectorState extends State<MyGestureDetector> {
     return GestureDetector(
         onTap: () {
           if (lastActionTime == null) {
-            widget.onTap();
+            widget.onTap?.call();
             lastActionTime = DateTime.now().millisecondsSinceEpoch;
           } else {
-            if (DateTime.now().millisecondsSinceEpoch - lastActionTime! > 1000) {
-              widget.onTap();
+            if (DateTime.now().millisecondsSinceEpoch - lastActionTime! >
+                1000) {
+              widget.onTap?.call();
               lastActionTime = DateTime.now().millisecondsSinceEpoch;
             }
           }

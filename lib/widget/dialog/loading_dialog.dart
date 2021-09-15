@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/config/resource_mananger.dart';
-import 'package:flutterdemo/util/margin_padding_util.dart';
 import 'package:flutterdemo/util/extension/extension_util.dart';
+import 'package:flutterdemo/util/margin_padding_util.dart';
 import 'package:flutterdemo/widget/text/text_common.dart';
 
 // ignore: must_be_immutable
@@ -12,24 +12,23 @@ class LoadingDialog extends Dialog {
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
-        padding: MarginPaddingUtil.onlyAdapterHeight(
+    return Container(
+        padding: MarginPaddingUtil.fromLTRB(
             left: 32, right: 32, top: 20, bottom: 20),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.imageSize),
+            borderRadius: BorderRadius.circular(8.sp),
             color: Color(0x50000000)),
         child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
+              SizedBox(
+                width: 34.sp,
+                height: 34.sp,
                 child: CircularProgressIndicator(
                     valueColor:
                         AlwaysStoppedAnimation(ColorsHelper.primaryColor),
                     strokeWidth: 4),
-                width: 34.imageSize,
-                height: 34.imageSize,
               ),
               16.widthBox,
               TextCommon(text, color: Colors.white)

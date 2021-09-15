@@ -2,10 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutterdemo/mvvm/view_state.dart';
-import 'package:flutterdemo/widget/dialog/dialog_helper.dart';
-import 'package:flutterdemo/util/toast_util.dart';
-import 'package:get/get.dart';
 import 'package:flutterdemo/util/extension/extension_util.dart';
+import 'package:flutterdemo/util/toast_util.dart';
+import 'package:flutterdemo/widget/dialog/dialog_helper.dart';
+import 'package:get/get.dart';
 
 class BaseViewModel extends GetxController {
   /// 防止页面销毁后,异步任务才完成,导致报错
@@ -28,7 +28,6 @@ class BaseViewModel extends GetxController {
   set viewState(ViewState viewState) {
     _viewStateError = null;
     _viewState = viewState;
-    update();
   }
 
   ViewStateError? _viewStateError;
@@ -55,8 +54,7 @@ class BaseViewModel extends GetxController {
   }
 
   void setBusy({String? title, int? seconds}) {
-    // viewState = ViewState.busy;
-
+    viewState = ViewState.busy;
     ToastUtil.showLoading(title: title ?? "加载中...");
   }
 

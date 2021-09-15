@@ -78,6 +78,7 @@ class _BaseScaffoldState extends State<BaseScaffold> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
+      onWillPop: dealWillPop,
       child: Scaffold(
         appBar: widget.appBar,
         body: widget.body,
@@ -100,7 +101,6 @@ class _BaseScaffoldState extends State<BaseScaffold> {
         drawerEnableOpenDragGesture: widget.drawerEnableOpenDragGesture,
         endDrawerEnableOpenDragGesture: widget.endDrawerEnableOpenDragGesture,
       ),
-      onWillPop: dealWillPop,
     );
   }
 
