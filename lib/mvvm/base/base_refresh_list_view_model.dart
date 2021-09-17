@@ -6,11 +6,13 @@ abstract class BaseRefreshListModel<T> extends BaseListViewModel<T> {
   /// 分页第一页页码
   static const int pageNumFirst = 1;
 
+  /// 分页条目数量
+  int pageSize = 20;
+
   /// 分页第一页数据下标
   // static const int pageNumFirst = 0;
 
-  /// 分页条目数量
-  int pageSize = 20;
+
 
   ///是否可以上拉加载更多数据
   static const bool canLoadMore = true;

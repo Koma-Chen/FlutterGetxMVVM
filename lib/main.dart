@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:flutterdemo/config/config.dart';
 import 'package:flutterdemo/config/resource_mananger.dart';
 import 'package:flutterdemo/config/route_config.dart';
 import 'package:flutterdemo/page/splash_page.dart';
@@ -71,6 +72,7 @@ class MyApp extends StatelessWidget {
             ),
         child: GetMaterialApp(
           getPages: RouteConfig.getPages,
+          showPerformanceOverlay: false,
           localizationsDelegates: [
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
