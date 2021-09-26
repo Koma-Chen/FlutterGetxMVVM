@@ -1,3 +1,4 @@
+import 'package:extended_text/extended_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/config/resource_mananger.dart';
@@ -40,7 +41,7 @@ class TextCommon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(text,
+    return ExtendedText(text,
         key: key,
         textAlign: align,
         maxLines: maxLines,
