@@ -7,7 +7,7 @@ class ToastUtil {
   }
 
   static void showWidgetDialog(Widget widget) {
-    SmartDialog.show(widget: widget);
+    // SmartDialog.show(widget: widget);
   }
 
   static void showSuccess(String msg) {

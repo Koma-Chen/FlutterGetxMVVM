@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/config/resource_mananger.dart';
-import 'package:flutterdemo/mvvm/base/base_view_model.dart';
+import 'package:flutterdemo/mvvm/base/base_controller.dart';
 import 'package:flutterdemo/util/extension/extension_util.dart';
 import 'package:flutterdemo/widget/image_extended.dart';
 import 'package:flutterdemo/widget/text/text_common.dart';
 
 Widget viewStateBuilder(
-    BuildContext context, BaseViewModel model, VoidCallback onTap,
-    {BaseViewModel? model2,
+    BuildContext context, BaseController model, VoidCallback onTap,
+    {BaseController? model2,
     Widget? empty,
     String? emptyImageStr,
     double paddingHeight = 0}) {

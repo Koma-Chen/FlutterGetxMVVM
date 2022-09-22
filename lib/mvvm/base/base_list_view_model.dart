@@ -1,7 +1,7 @@
-import 'package:flutterdemo/mvvm/base/base_view_model.dart';
+import 'package:flutterdemo/mvvm/base/base_controller.dart';
 
 /// 基于
-abstract class BaseListViewModel<T> extends BaseViewModel {
+abstract class BaseListViewModel<T> extends BaseController {
   /// 页面数据
   List<T> list = [];
 

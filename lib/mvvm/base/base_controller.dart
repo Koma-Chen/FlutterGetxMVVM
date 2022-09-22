@@ -7,7 +7,7 @@ import 'package:flutterdemo/util/toast_util.dart';
 import 'package:flutterdemo/widget/dialog/dialog_helper.dart';
 import 'package:get/get.dart';
 
-class BaseViewModel extends GetxController {
+class BaseController extends GetxController {
   /// 防止页面销毁后,异步任务才完成,导致报错
   bool disposed = false;
 
@@ -18,7 +18,7 @@ class BaseViewModel extends GetxController {
   ///
   /// 子类可以在构造函数指定需要的页面状态
   /// FooModel():super(viewState:ViewState.busy);
-  BaseViewModel({ViewState? viewState})
+  BaseController({ViewState? viewState})
       : _viewState = viewState ?? ViewState.idle {
     debugPrint('ViewStateModel---constructor--->$runtimeType');
   }
@@ -107,11 +107,11 @@ class BaseViewModel extends GetxController {
 // [e]为错误类型 :可能为 Error , Exception ,String
 // [s]为堆栈信息
 void printErrorStack(dynamic e, dynamic s) {
-  print('''
+  debugPrint('''
 <-----↓↓↓↓↓↓↓↓↓↓-----error-----↓↓↓↓↓↓↓↓↓↓----->
 $e
 <-----↑↑↑↑↑↑↑↑↑↑-----error-----↑↑↑↑↑↑↑↑↑↑----->''');
-  if (s != null) print('''
+  if (s != null) debugPrint('''
 <-----↓↓↓↓↓↓↓↓↓↓-----trace-----↓↓↓↓↓↓↓↓↓↓----->
 $s
 <-----↑↑↑↑↑↑↑↑↑↑-----trace-----↑↑↑↑↑↑↑↑↑↑----->

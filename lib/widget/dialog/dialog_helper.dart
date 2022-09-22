@@ -28,5 +28,5 @@ class DialogHelper {
         transitionDuration: Duration(milliseconds: 150));
   }
 
-  static void dismiss() => SmartDialog.dismiss(closeType: 4);
+  static void dismiss() => SmartDialog.dismiss();
 }

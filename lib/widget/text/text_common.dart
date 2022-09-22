@@ -2,7 +2,6 @@ import 'package:extended_text/extended_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/config/resource_mananger.dart';
-import 'package:flutterdemo/util/extension/extension_util.dart';
 
 class TextCommon extends StatelessWidget {
   final String text;
@@ -13,7 +12,7 @@ class TextCommon extends StatelessWidget {
   final bool medium;
   final bool heavy;
   final bool center;
-  final int maxLines;
+  final int? maxLines;
   final TextDecoration? decoration;
   final double? lineHeight;
   final TextStyle? style;
@@ -30,7 +29,7 @@ class TextCommon extends StatelessWidget {
       this.softWrap = false,
       this.center = false,
       this.medium = false,
-      this.maxLines = 1,
+      this.maxLines,
       this.decoration,
       this.lineHeight,
       this.style,
@@ -51,11 +50,11 @@ class TextCommon extends StatelessWidget {
             TextStyle(
                 decoration: decoration,
                 color: color ?? ColorsHelper.sixColor,
-                fontSize: size?.sp,
+                fontSize: size,
                 fontWeight: fontWeight,
                 height: lineHeight == null
                     ? 1.0
-                    : ((lineHeight ?? 0) / (size ?? 1)) * 1.0,
-                shadows: shadow ?? []));
+                    : (lineHeight! / (size ?? 1)) * 1.0,
+                shadows: shadow));
   }
 }

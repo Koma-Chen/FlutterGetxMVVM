@@ -16,7 +16,7 @@ class HttpClient {
   HttpClient({BaseOptions? options, HttpConfig? dioConfig})
       : _dio = AppDio(options: options, dioConfig: dioConfig);
 
-  Future<T> get<T>(String uri,
+  Future<T?> get<T>(String uri,
       {Map<String, dynamic>? queryParameters,
       Options? options,
       CancelToken? cancelToken,
@@ -36,7 +36,7 @@ class HttpClient {
     // }
   }
 
-  Future<T> post<T>(String uri,
+  Future<T?> post<T>(String uri,
       {dynamic data,
       Map<String, dynamic>? queryParameters,
       Options? options,
@@ -87,7 +87,7 @@ class HttpClient {
     }
   }
 
-  Future<T> delete<T>(String uri,
+  Future<T?> delete<T>(String uri,
       {data,
       Map<String, dynamic>? queryParameters,
       Options? options,
@@ -107,7 +107,7 @@ class HttpClient {
     // }
   }
 
-  Future<T> put<T>(String uri,
+  Future<T?> put<T>(String uri,
       {data,
       Map<String, dynamic>? queryParameters,
       Options? options,

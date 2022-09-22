@@ -24,12 +24,8 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion Versions.compileSdkVersion
-    buildToolsVersion Versions.buildToolsVersion
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -39,32 +35,16 @@ android {
         applicationId "com.koma.flutterdemo"
         minSdkVersion Versions.minSdkVersion
         targetSdkVersion Versions.targetSdkVersion
-
+        compileSdkVersion Versions.compileSdkVersion
+        buildToolsVersion Versions.buildToolsVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         flavorDimensions "default"
         multiDexEnabled true
 
-        dexOptions {
-            javaMaxHeapSize "4g"
-            maxProcessCount = 8
-        }
-
-        compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_8
-            targetCompatibility JavaVersion.VERSION_1_8
-        }
     }
 
-    buildFeatures {
-        dataBinding = true
-    }
-
-    //使用Kotlin实验特性
-    androidExtensions {
-        experimental = true
-    }
 
     signingConfigs {
         demo {
@@ -111,27 +91,9 @@ android {
 
     buildTypes {
         release {
-            // 是否进行混淆
             minifyEnabled true
-            useProguard true
-            // 开启zipAlign可以让安装包中的资源按4字节对齐，这样可以减少应用在运行时的内存消耗
             zipAlignEnabled true
-            // 移除无用的resource文件：当ProGuard 把部分无用代码移除的时候，
-            // 这些代码所引用的资源也会被标记为无用资源，然后
-            // 系统通过资源压缩功能将它们移除。
-            // 需要注意的是目前资源压缩器目前不会移除values/文件夹中
-            // 定义的资源（例如字符串、尺寸、样式和颜色）
-            // 开启后，Android构建工具会通过ResourceUsageAnalyzer来检查
-            // 哪些资源是无用的，当检查到无用的资源时会把该资源替换
-            // 成预定义的版本。主要是针对.png、.9.png、.xml提供了
-            // TINY_PNG、TINY_9PNG、TINY_XML这3个byte数组的预定义版本。
-            // 资源压缩工具默认是采用安全压缩模式来运行，可以通过开启严格压缩模式来达到更好的瘦身效果。
             shrinkResources true
-            // 混淆文件的位置，其中 proguard-android.txt 为sdk默认的混淆配置，
-            // 它的位置位于android-sdk/tools/proguard/proguard-android.txt，
-            // 此外，proguard-android-optimize.txt 也为sdk默认的混淆配置，
-            // 但是它默认打开了优化开关。并且，我们可在配置混淆文件将android.util.Log置为无效代码，
-            // 以去除apk中打印日志的代码。而 proguard-rules.pro 是该模块下的混淆配置。
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             ndk {
                 abiFilters 'armeabi-v7a'

@@ -111,7 +111,7 @@ class _BaseScaffoldState extends State<BaseScaffold> {
     }
 
     //处理弹窗问题
-    if (SmartDialog.instance.config.isExist) {
+    if (SmartDialog.config.isExist) {
       SmartDialog.dismiss();
       return false;
     }

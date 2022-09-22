@@ -1,7 +1,5 @@
-import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/config/route_config.dart';
-import 'package:flutterdemo/page/main/main_page.dart';
 import 'package:get/get.dart';
 
 class SplashPage extends StatefulWidget {
@@ -9,20 +7,23 @@ class SplashPage extends StatefulWidget {
   SplashPageState createState() => SplashPageState();
 }
 
-class SplashPageState extends State<SplashPage>
-    with AfterLayoutMixin<SplashPage> {
+class SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      color: Colors.white,
+      child: Center(
+        child: Text("SplashPage"),
+      ),
+    );
   }
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 1),
+    Future.delayed(const Duration(seconds: 2),
         () => Get.offAndToNamed(RouteName.mainPage.toString()));
   }
-
-  @override
-  void afterFirstLayout(BuildContext context) {}
 }
