@@ -15,13 +15,13 @@ class MainPage extends BaseState<MainController> {
           TextCommon("data"),
           GetBuilder<MainController>(
             builder: (logic) {
-              return TextCommon(controller.bean.value?.token ?? "");
+              return TextCommon(controller.bean?.token ?? "");
             },
             id: "token",
           ),
           GetBuilder<MainController>(
             builder: (logic) {
-              return TextCommon(controller.bean.value?.expire ?? "");
+              return TextCommon(controller.bean?.expire ?? "");
             },
             id: "time",
           ),

@@ -7,15 +7,16 @@ import 'package:logger/logger.dart';
 class LogUtil {
   LogUtil._();
 
-  static var _logger = Logger(
-    printer: PrefixPrinter(PrettyPrinter(printTime: true,methodCount: 2)),
+  static final _logger = Logger(
+    printer: PrefixPrinter(PrettyPrinter(
+      printTime: true,
+    )),
   );
 
   /// 调试时，调用这个方法
   static void d(dynamic message) {
     if (!Config.isDebug) return;
     _logger.d("koma===$message");
-    // print("koma===$message");
   }
 
   /// 打印错误日志时，调用这个方法
@@ -25,17 +26,17 @@ class LogUtil {
   }
 
   static void json(Map map) {
-    JsonEncoder encoder = new JsonEncoder.withIndent('  ');
+    final JsonEncoder encoder = JsonEncoder.withIndent('  ');
     compute(_normalPrint, encoder.convert(map));
   }
 
   static String _normalPrint(String message) {
-    debugPrint("koma===" + message);
+    debugPrint("koma===$message");
     return "";
   }
 
-  static var _separator = "=";
-  static var _split =
+  static const _separator = "=";
+  static const _split =
       "$_separator$_separator$_separator$_separator$_separator$_separator$_separator$_separator$_separator";
   static var _title = "Yl-Log";
   static var _isDebug = true;
@@ -43,13 +44,16 @@ class LogUtil {
   static String _startLine = "$_split$_title$_split";
   static String _endLine = "$_split$_separator$_separator$_separator$_split";
 
-  static void init({required String title, required bool isDebug, required int limitLength}) {
+  static void init(
+      {required String title,
+      required bool isDebug,
+      required int limitLength}) {
     _title = title;
     _isDebug = isDebug;
     _limitLength = limitLength;
     _startLine = "$_split$_title$_split";
-    var endLineStr = StringBuffer();
-    var cnCharReg = RegExp("[\u4e00-\u9fa5]");
+    final endLineStr = StringBuffer();
+    final cnCharReg = RegExp("[\u4e00-\u9fa5]");
     for (int i = 0; i < _startLine.length; i++) {
       if (cnCharReg.stringMatch(_startLine[i]) != null) {
         endLineStr.write(_separator);
@@ -71,28 +75,28 @@ class LogUtil {
   }
 
   static void _log(String msg) {
-    print("$_startLine");
+    debugPrint(_startLine);
     _logEmpyLine();
     if (msg.length < _limitLength) {
-      print(msg);
+      debugPrint(msg);
     } else {
       segmentationLog(msg);
     }
     _logEmpyLine();
-    print("$_endLine");
+    debugPrint(_endLine);
   }
 
   static void segmentationLog(String msg) {
-    var outStr = StringBuffer();
+    final outStr = StringBuffer();
     for (var index = 0; index < msg.length; index++) {
       outStr.write(msg[index]);
       if (index % _limitLength == 0 && index != 0) {
-        print(outStr);
+        debugPrint(outStr.toString());
         outStr.clear();
-        var lastIndex = index + 1;
+        final lastIndex = index + 1;
         if (msg.length - lastIndex < _limitLength) {
-          var remainderStr = msg.substring(lastIndex, msg.length);
-          print(remainderStr);
+          final remainderStr = msg.substring(lastIndex, msg.length);
+          debugPrint(remainderStr);
           break;
         }
       }
@@ -100,6 +104,6 @@ class LogUtil {
   }
 
   static void _logEmpyLine() {
-    print("");
+    debugPrint("");
   }
 }

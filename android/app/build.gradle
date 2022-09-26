@@ -41,8 +41,6 @@ android {
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         flavorDimensions "default"
-        multiDexEnabled true
-
     }
 
 

@@ -6,7 +6,7 @@ import 'package:flutterdemo/util/http/http_client.dart';
 import 'package:get/get.dart';
 
 class MainServiceImpl implements MainService {
-  static HttpClient client = Get.find<HttpClient>();
+  HttpClient client = Get.find<HttpClient>();
 
   @override
   Future<T?> login<T>(String phone, int smsCode, String code, String type,

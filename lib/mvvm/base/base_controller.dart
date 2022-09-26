@@ -14,10 +14,6 @@ class BaseController extends GetxController {
   /// 当前的页面状态,默认为idle,可在viewModel的构造方法中指定;
   ViewState _viewState = ViewState.idle;
 
-  /// 根据状态构造
-  ///
-  /// 子类可以在构造函数指定需要的页面状态
-  /// FooModel():super(viewState:ViewState.busy);
   BaseController({ViewState? viewState})
       : _viewState = viewState ?? ViewState.idle {
     debugPrint('ViewStateModel---constructor--->$runtimeType');

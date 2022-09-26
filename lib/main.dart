@@ -9,6 +9,7 @@ import 'package:flutterdemo/page/splash_page.dart';
 import 'package:flutterdemo/util/address_manager.dart';
 import 'package:flutterdemo/util/http/http_client.dart';
 import 'package:flutterdemo/util/http/http_config.dart';
+import 'package:flutterdemo/util/shared_preferences.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
@@ -31,6 +32,7 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.light));
+  SPUtils.init();
 }
 
 class MyApp extends StatelessWidget {
@@ -44,43 +46,43 @@ class MyApp extends StatelessWidget {
     );
 
     return RefreshConfiguration(
-        hideFooterWhenNotFull: true,
-        //列表数据不满一页,不触发加载更多
+      hideFooterWhenNotFull: true,
+      //列表数据不满一页,不触发加载更多
 
-        headerBuilder: () => const ClassicHeader(
-              idleText: "下拉可刷新",
-              releaseText: "释放可刷新",
-              refreshingText: "刷新中",
-              completeText: "刷新完成",
-            ),
-        footerBuilder: () => const ClassicFooter(
-              failedText: "加载失败，请点击重试",
-              idleText: "上拉加载更多",
-              loadingText: "加载中...",
-              noDataText: "没有更多数据了",
-              canLoadingText: "释放以便加载更多",
-            ),
-        child: ScreenUtilInit(
-          designSize: const Size(750, 1624),
-          minTextAdapt: true,
-          splitScreenMode: true,
-          builder: (context, child) => GetMaterialApp(
-            getPages: RouteConfig.getPages,
-            showPerformanceOverlay: false,
-            localizationsDelegates: [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate
-            ],
-            supportedLocales: [const Locale("zh", "CN")],
-            navigatorObservers: [FlutterSmartDialog.observer],
-            builder: FlutterSmartDialog.init(),
-            initialRoute: "/",
-            //导航观察器
-            theme: themeData,
-            home: child,
-          ),
-          child: SplashPage(),
-        ));
+      headerBuilder: () => const ClassicHeader(
+        idleText: "下拉可刷新",
+        releaseText: "释放可刷新",
+        refreshingText: "刷新中",
+        completeText: "刷新完成",
+      ),
+      footerBuilder: () => const ClassicFooter(
+        failedText: "加载失败，请点击重试",
+        idleText: "上拉加载更多",
+        loadingText: "加载中...",
+        noDataText: "没有更多数据了",
+        canLoadingText: "释放以便加载更多",
+      ),
+      child: ScreenUtilInit(
+        designSize: const Size(750, 1624),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) => GetMaterialApp(
+          getPages: RouteConfig.getPages,
+          showPerformanceOverlay: false,
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate
+          ],
+          supportedLocales: [const Locale("zh", "CN")],
+          navigatorObservers: [FlutterSmartDialog.observer],
+          builder: FlutterSmartDialog.init(),
+          initialRoute: "/",
+          theme: themeData,
+          home: child,
+        ),
+        child: SplashPage(),
+      ),
+    );
   }
 }
