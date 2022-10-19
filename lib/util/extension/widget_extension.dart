@@ -26,7 +26,7 @@ extension WidgetExtension on Widget {
         child: this);
   }
 
-  Widget insertTap(VoidCallback onPress, {bool useThrottle = true}) {
+  Widget addClickEvent(VoidCallback onPress, {bool useThrottle = true}) {
     return useThrottle
         ? MyGestureDetector(onTap: onPress, child: this)
         : GestureDetector(onTap: onPress, child: this);

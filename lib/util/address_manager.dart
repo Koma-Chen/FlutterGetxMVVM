@@ -11,10 +11,6 @@ class AddressManager {
       ? "https://test.calfkaka.com/api/parents/"
       : "https://test.calfkaka.com/api/parents/";
 
-  static final String SOCKET_URL = Config.isDebug
-      ? "ws://www.calfkaka.com/ws/baby/uselimit"
-      : "ws://www.calfkaka.com/ws/baby/uselimit";
-
   /// 登录
   static String login = "v1/login";
 }

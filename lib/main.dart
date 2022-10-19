@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutterdemo/config/resource_mananger.dart';
 import 'package:flutterdemo/config/route_config.dart';
+import 'package:flutterdemo/intl/intl_msg.dart';
 import 'package:flutterdemo/page/splash_page.dart';
 import 'package:flutterdemo/util/address_manager.dart';
 import 'package:flutterdemo/util/http/http_client.dart';
@@ -23,8 +24,7 @@ void main() {
       sendTimeout: 10000);
   final HttpClient client = HttpClient(dioConfig: dioConfig);
   Get.put<HttpClient>(client);
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp]); //屏幕向上显示
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setEnabledSystemUIOverlays(
       [SystemUiOverlay.top, SystemUiOverlay.bottom]);
   //指定在应用程序运行时可见的系统叠加，主要对状态栏的操作
@@ -67,6 +67,9 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) => GetMaterialApp(
+          locale: Get.deviceLocale,
+          fallbackLocale: Locale("zh", "CN"),
+          translations: IntlMsgs(),
           getPages: RouteConfig.getPages,
           showPerformanceOverlay: false,
           localizationsDelegates: [

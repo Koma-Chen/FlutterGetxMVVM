@@ -35,21 +35,17 @@ class MyGestureDetector extends StatefulWidget {
 }
 
 class MyGestureDetectorState extends State<MyGestureDetector> {
-  int? lastActionTime;
+  DateTime lastActionTime = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          if (lastActionTime == null) {
+          final time = DateTime.now().millisecondsSinceEpoch -
+              lastActionTime.millisecondsSinceEpoch;
+          if (time > 1000) {
             widget.onTap?.call();
-            lastActionTime = DateTime.now().millisecondsSinceEpoch;
-          } else {
-            if (DateTime.now().millisecondsSinceEpoch - lastActionTime! >
-                1000) {
-              widget.onTap?.call();
-              lastActionTime = DateTime.now().millisecondsSinceEpoch;
-            }
+            lastActionTime = DateTime.now();
           }
         },
         behavior: widget.behavior,

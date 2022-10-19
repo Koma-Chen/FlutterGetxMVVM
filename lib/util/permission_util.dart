@@ -8,28 +8,26 @@
 // typedef PermissionDenied = void Function();
 //
 // class PermissionUtil {
-//
 //   static late FlutterEasyPermission _easyPermission;
 //
 //   static Future<bool> requestPermissions(
 //       {List<Permissions>? androidPermission,
 //       List<PermissionGroup>? iosPermission,
-//       required PermissionGrant onGranted,PermissionDenied? onDenied}) async {
+//       required PermissionGrant onGranted,
+//       PermissionDenied? onDenied}) async {
 //     // [PermissionName.Storage, PermissionName.Microphone]
 //     _easyPermission = FlutterEasyPermission()
-//       ..addPermissionCallback(
-//           onGranted: (requestCode,perms,perm){
-//             // debugPrint("android获得授权:$perms");
-//             // debugPrint("iOS获得授权:$perm");
-//           },
-//           onDenied: (requestCode,perms,perm,isPermanent){
-//             if(isPermanent){
-//               FlutterEasyPermission.showAppSettingsDialog(title: "Camera");
-//             }else{
-//               // debugPrint("android授权失败:$perms");
-//               // debugPrint("iOS授权失败:$perm");
-//             }
-//           });
+//       ..addPermissionCallback(onGranted: (requestCode, perms, perm) {
+//         // debugPrint("android获得授权:$perms");
+//         // debugPrint("iOS获得授权:$perm");
+//       }, onDenied: (requestCode, perms, perm, isPermanent) {
+//         if (isPermanent) {
+//           FlutterEasyPermission.showAppSettingsDialog(title: "Camera");
+//         } else {
+//           // debugPrint("android授权失败:$perms");
+//           // debugPrint("iOS授权失败:$perm");
+//         }
+//       });
 //
 //     FlutterEasyPermission.request(
 //         perms: androidPermission ?? [],

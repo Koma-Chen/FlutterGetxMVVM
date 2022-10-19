@@ -54,7 +54,6 @@ class HttpClient {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      // return ;
       return JsonConvert.fromJsonAsT<T>(
           handleResponse<T>(response, httpTransformer: httpTransformer).data);
     } on Exception catch (e) {
