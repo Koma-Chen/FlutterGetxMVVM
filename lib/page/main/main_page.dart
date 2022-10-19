@@ -18,7 +18,7 @@ class MainPage extends BaseState<MainController> {
           100.heightBox,
           TextCommon(
             "text".tr,
-            color: AppTheme.getColor(AppTheme.TEXT_PRIMARY),
+            color: AppTheme.themeColor.textPrimary,
           ).addClickEvent(
             () {
               AppTheme.changeThemeMode();
