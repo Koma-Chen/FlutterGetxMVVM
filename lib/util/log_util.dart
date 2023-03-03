@@ -14,15 +14,15 @@ class LogUtil {
   );
 
   /// 调试时，调用这个方法
-  static void d(dynamic message) {
+  static void d(dynamic message,{String tag = ""}) {
     if (!Config.isDebug) return;
-    _logger.d("koma===$message");
+    _logger.d("$tag:$message");
   }
 
   /// 打印错误日志时，调用这个方法
   static void e(dynamic message) {
     if (!Config.isDebug) return;
-    _logger.e("koma===$message");
+    _logger.e("$message");
   }
 
   static void json(Map map) {
@@ -31,7 +31,7 @@ class LogUtil {
   }
 
   static String _normalPrint(String message) {
-    debugPrint("koma===$message");
+    debugPrint("$message");
     return "";
   }
 

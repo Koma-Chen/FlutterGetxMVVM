@@ -1,12 +1,13 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:flutterdemo/theme/app_theme.dart';
 
 typedef ScaffoldParamVoidCallback = void Function();
 
 class BaseScaffold extends StatefulWidget {
   const BaseScaffold({
-    Key? key,
+    this.keyName,
     this.appBar,
     this.body,
     this.floatingActionButton,
@@ -30,13 +31,14 @@ class BaseScaffold extends StatefulWidget {
     this.isTwiceBack = false,
     this.isCanBack = true,
     this.onBack,
+    this.titleBarColor,
   })  : assert(primary != null),
         assert(extendBody != null),
         assert(extendBodyBehindAppBar != null),
-        assert(drawerDragStartBehavior != null),
-        super(key: key);
+        assert(drawerDragStartBehavior != null);
 
   ///系统Scaffold的属性
+  final Key? keyName;
   final bool extendBody;
   final bool extendBodyBehindAppBar;
   final PreferredSizeWidget? appBar;
@@ -49,6 +51,7 @@ class BaseScaffold extends StatefulWidget {
   final Widget? endDrawer;
   final Color? drawerScrimColor;
   final Color? backgroundColor;
+  final Color? titleBarColor;
   final Widget? bottomNavigationBar;
   final Widget? bottomSheet;
   final bool? resizeToAvoidBottomInset;
@@ -80,7 +83,14 @@ class _BaseScaffoldState extends State<BaseScaffold> {
     return WillPopScope(
       onWillPop: dealWillPop,
       child: Scaffold(
-        appBar: widget.appBar,
+        key: widget.keyName,
+        appBar: widget.appBar ??
+            AppBar(
+              toolbarHeight: 0,
+              backgroundColor:
+                  widget.titleBarColor ?? AppTheme.themeColor.textPrimary,
+              elevation: 0,
+            ),
         body: widget.body,
         floatingActionButton: widget.floatingActionButton,
         floatingActionButtonLocation: widget.floatingActionButtonLocation,
@@ -90,7 +100,7 @@ class _BaseScaffoldState extends State<BaseScaffold> {
         endDrawer: widget.endDrawer,
         bottomNavigationBar: widget.bottomNavigationBar,
         bottomSheet: widget.bottomSheet,
-        backgroundColor: widget.backgroundColor,
+        backgroundColor: widget.backgroundColor ?? AppTheme.themeColor.textPrimary,
         resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
         primary: widget.primary,
         drawerDragStartBehavior: widget.drawerDragStartBehavior,

@@ -1,52 +1,49 @@
-/// test11
-import 'package:flutter/material.dart';
-/// test2
-import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
-import 'package:flutterdemo/config/resource_mananger.dart';
 import 'package:flutterdemo/config/route_config.dart';
 import 'package:flutterdemo/intl/intl_msg.dart';
 import 'package:flutterdemo/page/splash_page.dart';
+import 'package:flutterdemo/theme/app_theme.dart';
 import 'package:flutterdemo/util/address_manager.dart';
 import 'package:flutterdemo/util/http/http_client.dart';
 import 'package:flutterdemo/util/http/http_config.dart';
-import 'package:flutterdemo/util/shared_preferences.dart';
+import 'package:flutterdemo/util/method_channel_util.dart';
+import 'package:flutterdemo/util/sp_util/shared_preferences.dart';
+import 'package:flutterdemo/util/sp_util/sp_key.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SPUtils.init();
+  MethodChannelUtil().init();
   runApp(MyApp());
   final HttpConfig dioConfig = HttpConfig(
-      baseUrl: AddressManager.BASE_URL,
-      connectTimeout: 10000,
-      receiveTimeout: 10000,
-      sendTimeout: 10000);
+    baseUrl: AddressManager.BASE_URL,
+    connectTimeout: Duration(seconds: 15),
+    receiveTimeout: Duration(seconds: 15),
+    sendTimeout: Duration(seconds: 15),
+  );
   final HttpClient client = HttpClient(dioConfig: dioConfig);
+
+  /// 网络请求
   Get.put<HttpClient>(client);
+
+  /// 竖屏
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setEnabledSystemUIOverlays(
       [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-  //指定在应用程序运行时可见的系统叠加，主要对状态栏的操作
-  //设置顶部状态栏属性，颜色：透明；图标：黑色
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.light));
-  SPUtils.init();
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final themeData = ThemeData(
-      textTheme: const TextTheme(
-          subtitle1: TextStyle(textBaseline: TextBaseline.alphabetic)),
-      primaryColor: ColorsHelper.primaryColor,
-      accentColor: ColorsHelper.primaryColor,
-    );
-
     return RefreshConfiguration(
       hideFooterWhenNotFull: true,
       //列表数据不满一页,不触发加载更多
@@ -69,25 +66,28 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) => GetMaterialApp(
-          locale: Get.deviceLocale,
-          fallbackLocale: Locale("zh", "CN"),
+          theme: AppTheme.lightTheme,
+          locale: getLocale(),
+          fallbackLocale: Locale("en", "US"),
           translations: IntlMsgs(),
           getPages: RouteConfig.getPages,
-          showPerformanceOverlay: false,
-          localizationsDelegates: [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate
-          ],
-          supportedLocales: [const Locale("zh", "CN")],
           navigatorObservers: [FlutterSmartDialog.observer],
           builder: FlutterSmartDialog.init(),
           initialRoute: "/",
-          theme: themeData,
           home: child,
         ),
         child: SplashPage(),
       ),
     );
+  }
+
+  Locale? getLocale() {
+    final localeStr = SPUtils().getString(SpKey.LANGUAGE);
+    if (localeStr.isEmpty) return Get.deviceLocale;
+    if (localeStr == "zh_CN") {
+      return Locale("zh", "CN");
+    } else {
+      return Locale("en", "US");
+    }
   }
 }

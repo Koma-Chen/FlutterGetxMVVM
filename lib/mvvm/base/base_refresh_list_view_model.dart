@@ -7,7 +7,7 @@ abstract class BaseRefreshListModel<T> extends BaseListViewModel<T> {
   static const int pageNumFirst = 1;
 
   /// 分页条目数量
-  int pageSize = 20;
+  int pageSize = 10;
 
   /// 分页第一页数据下标
   // static const int pageNumFirst = 0;
@@ -38,9 +38,9 @@ abstract class BaseRefreshListModel<T> extends BaseListViewModel<T> {
         list.clear();
         setEmpty();
       } else {
-        onCompleted(data);
         list.clear();
         list.addAll(data);
+        onCompleted(data);
         refreshController.refreshCompleted();
         // 小于分页的数量,禁止上拉加载更多
         if (data.length < pageSize) {
@@ -72,14 +72,13 @@ abstract class BaseRefreshListModel<T> extends BaseListViewModel<T> {
         if (_currentPageNum < 0) _currentPageNum = 0;
         refreshController.loadNoData();
       } else {
-        onCompleted(data);
         list.addAll(data);
+        onCompleted(data);
         if (data.length < pageSize) {
           refreshController.loadNoData();
         } else {
           refreshController.loadComplete();
         }
-        update();
       }
       return data;
     } catch (e, s) {

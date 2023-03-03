@@ -4,6 +4,7 @@ class MyGestureDetector extends StatefulWidget {
   final VoidCallback? onTap;
   final Widget child;
   final int? period;
+  final int mill;
   final HitTestBehavior? behavior;
   final GestureLongPressCallback? onLongPress;
   final GestureLongPressStartCallback? onLongPressStart;
@@ -27,7 +28,8 @@ class MyGestureDetector extends StatefulWidget {
       this.onPanUpdate,
       this.onPanEnd,
       this.onTapUp,
-      this.onPanDown})
+      this.onPanDown,
+      this.mill = 1000})
       : super(key: key);
 
   @override
@@ -43,12 +45,12 @@ class MyGestureDetectorState extends State<MyGestureDetector> {
         onTap: () {
           final time = DateTime.now().millisecondsSinceEpoch -
               lastActionTime.millisecondsSinceEpoch;
-          if (time > 1000) {
+          if (time > widget.mill) {
             widget.onTap?.call();
             lastActionTime = DateTime.now();
           }
         },
-        behavior: widget.behavior,
+        behavior: widget.behavior ?? HitTestBehavior.opaque,
         onLongPress: widget.onLongPress,
         onLongPressStart: widget.onLongPressStart,
         onLongPressEnd: widget.onLongPressEnd,

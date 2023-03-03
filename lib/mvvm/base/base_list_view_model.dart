@@ -19,11 +19,12 @@ abstract class BaseListViewModel<T> extends BaseController {
         list.clear();
         setEmpty();
       } else {
-        onCompleted(data);
         list.clear();
         list.addAll(data);
+        onCompleted(data);
         setIdle();
       }
+
     } catch (e, s) {
       if (init) list.clear();
       setError(e, s);
@@ -33,5 +34,5 @@ abstract class BaseListViewModel<T> extends BaseController {
   // 加载数据
   Future<List<T>> loadData();
 
-  onCompleted(List<T> data) {}
+  void onCompleted(List<T> data);
 }

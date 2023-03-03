@@ -1,32 +1,39 @@
-import 'dart:convert';
-
-import 'package:flutter/cupertino.dart'
-    hide CupertinoAlertDialog, CupertinoDialogAction;
-import 'package:flutter/cupertino.dart';
+import 'package:flutterdemo/widget/dialog/commom_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
-import 'package:flutterdemo/widget/dialog/custom_widget_dialog.dart';
-import 'package:get/get.dart';
 
 class DialogHelper {
-  static void showCustomWidgetDialog(Widget widget,
-      {VoidCallback? onCancel,
-      VoidCallback? onConfirm,
-      bool touchOutCancel = false}) {
-    showGeneralDialog<dynamic>(
-        context: Get.key.currentState!.context,
-        pageBuilder: (context, anim1, anim2) {
-          return Transform.scale(
-              scale: anim1.value,
-              child: Opacity(
-                  opacity: anim1.value,
-                  child: CustomWidgetDialog(widget: widget)));
-        },
-        barrierColor: Colors.black.withOpacity(.6),
-        barrierDismissible: touchOutCancel,
-        barrierLabel: "",
-        transitionDuration: Duration(milliseconds: 150));
+  static void showCustomWidgetDialog(WidgetBuilder widget,
+      {bool touchOutsideCancel = false, AlignmentGeometry? alignment}) {
+    SmartDialog.show(
+      builder: widget,
+      backDismiss: touchOutsideCancel,
+      alignment: alignment,
+    );
   }
 
-  static void dismiss() => SmartDialog.dismiss();
+  static void showCommonDialog(
+      {required String title,
+      VoidCallback? onConfirm,
+      VoidCallback? onCancel}) {
+    SmartDialog.show(
+        builder: (context) => CommonDialog(
+              title: title,
+              onCancel: () async {
+                await dismiss();
+                onCancel?.call();
+              },
+              onConfirm: () async {
+                await dismiss();
+                onConfirm?.call();
+              },
+            ));
+  }
+
+  static void showLoading({String? title}) {
+    SmartDialog.showLoading(msg: title ?? "");
+  }
+
+
+  static Future<void> dismiss() => SmartDialog.dismiss();
 }

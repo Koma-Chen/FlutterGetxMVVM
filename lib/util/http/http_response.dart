@@ -26,17 +26,3 @@ class HttpResponse {
     ok = false;
   }
 }
-
-/// 子类需要重写
-// abstract class BaseResponseData {
-//   int? code = 0;
-//   dynamic data = "";
-//   String? msg = "";
-//
-//   BaseResponseData({this.code, this.data, this.msg});
-//
-//   @override
-//   String toString() {
-//     return 'BaseResponseData{code: $code, data: $data, msg: $msg}';
-//   }
-// }

@@ -1,6 +1,6 @@
+import 'package:flutterdemo/theme/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/config/resource_mananger.dart';
 import 'package:flutterdemo/mvvm/base/base_controller.dart';
 import 'package:flutterdemo/util/extension/extension_util.dart';
 import 'package:flutterdemo/widget/image_extended.dart';
@@ -80,7 +80,7 @@ class ViewStateEmptyWidget extends StatelessWidget {
                 13.heightBox,
                 TextCommon(
                   '内容空空如也~',
-                  color: ColorsHelper.nineColor,
+                  color: AppTheme.themeColor.textPrimary,
                   size: 26,
                   lineHeight: 37,
                 ),
@@ -104,7 +104,7 @@ class ViewStateErrorWidget extends StatelessWidget {
       this.image,
       this.message,
       this.text,
-      @required this.onTap,
+      required this.onTap,
       this.paddingHeight = 0})
       : super(key: key);
 
@@ -128,7 +128,7 @@ class ViewStateErrorWidget extends StatelessWidget {
             message ?? '请求出错,请点重新加载试试~',
             size: 26,
             lineHeight: 37,
-            color: ColorsHelper.threeColor,
+            color: AppTheme.themeColor.textPrimary,
           ),
           20.heightBox,
           GestureDetector(

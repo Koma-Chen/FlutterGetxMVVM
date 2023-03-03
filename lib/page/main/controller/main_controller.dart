@@ -6,10 +6,16 @@ import 'package:flutterdemo/mvvm/base/base_controller.dart';
 import 'package:flutterdemo/page/main/data/login_bean.dart';
 import 'package:flutterdemo/page/main/service/main_service.dart';
 import 'package:flutterdemo/page/main/service/main_service_impl.dart';
+import 'package:flutterdemo/util/http/http_exception.dart';
 
 class MainController extends BaseController {
   LoginBean? bean = LoginBean();
   late MainService _mainService;
+
+
+  MainController(){
+   print("koma===MainController");
+  }
 
   @override
   void onInit() {
@@ -31,8 +37,8 @@ class MainController extends BaseController {
           "13243756407", 666666, "", "", "");
       update(['token', 'time']);
       return true;
-    } on DioError catch (e) {
-      debugPrint("登录失败:${jsonDecode(e.response.toString())['errorMessage']}");
+    } on HttpException catch (e) {
+      debugPrint("登录失败:${e.message}");
       return false;
     } finally {
       setIdle();

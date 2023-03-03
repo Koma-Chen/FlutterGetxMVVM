@@ -1,5 +1,10 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
+
 import 'package:flutterdemo/config/route_config.dart';
+import 'package:flutterdemo/page/main/main_page.dart';
+import 'package:flutterdemo/util/http/http_client.dart';
+import 'package:flutterdemo/util/http/http_exception.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SplashPage extends StatefulWidget {
@@ -11,8 +16,8 @@ class SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
+      width: Get.width,
+      height: Get.height,
       color: Colors.white,
       child: Center(
         child: Text("SplashPage"),
@@ -23,7 +28,19 @@ class SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 2),
-        () => Get.offAndToNamed(RouteName.mainPage.toString()));
+    // Future.delayed(const Duration(seconds: 2),
+    //     () => Get.offAndToNamed(RouteName.mainPage.toString()));
+    test();
+  }
+
+  Future<void> test() async {
+    final client = Get.find<HttpClient>();
+    try {
+      await client.get("http://bapi.speediance.top/api/bapp/login/recentlyLoggedUser");
+      // await client.get("http://www.baidu.com/my");
+    } on HttpException catch (e) {
+      print("koma===e:${e.message}");
+    }
+    Get.to(MainPage());
   }
 }

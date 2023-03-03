@@ -9,14 +9,19 @@ abstract class HttpTransformer {
 }
 
 class DefaultHttpTransformer extends HttpTransformer {
-// 假设接口返回类型
-//   {
-//     "code": 100,
-//     "data": {},
-//     "message": "success"
-// }
+
+  static List<int> successCode = [
+    // 业务成功
+    0,
+  ];
+
   @override
   HttpResponse parse(Response response) {
+    int code = response.data['code'];
+    if (!successCode.contains(code)) {
+      return HttpResponse.failure(
+          errorCode: code, errorMsg: response.data['message']);
+    }
     Map<String, dynamic> json;
     if (response.data is String) {
       json = jsonDecode(response.data);
@@ -29,7 +34,8 @@ class DefaultHttpTransformer extends HttpTransformer {
   }
 
   /// 单例对象
-  static final DefaultHttpTransformer _instance = DefaultHttpTransformer._internal();
+  static final DefaultHttpTransformer _instance =
+      DefaultHttpTransformer._internal();
 
   /// 内部构造方法，可避免外部暴露构造函数，进行实例化
   DefaultHttpTransformer._internal();
@@ -55,7 +61,7 @@ abstract class BaseResponseData {
 class DefaultResponseData extends BaseResponseData {
   DefaultResponseData.fromJson(Map<String, dynamic> json) {
     data = json['data'] ?? {};
-    msg = json['errorMessage'];
+    msg = json['message'];
     code = json['code'];
   }
 }

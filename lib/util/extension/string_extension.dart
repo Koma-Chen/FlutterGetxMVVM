@@ -28,7 +28,7 @@ extension StringExtension on String {
   }
 
   void printString() {
-    if (this != "") debugPrint("Koma===$this");
+    if (this != "") debugPrint("$this");
   }
 
   //字符转换成Color对象
@@ -41,7 +41,7 @@ extension StringExtension on String {
     if (hexColor.length == 8) {
       color = Color("0x$hexColor".parseInt);
     }
-
     return color;
   }
+
 }

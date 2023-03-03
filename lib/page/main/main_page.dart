@@ -18,11 +18,11 @@ class MainPage extends BaseState<MainController> {
           100.heightBox,
           TextCommon(
             "text".tr,
-            color: AppTheme.themeColor.textPrimary,
+            color: Colors.red,
           ).addClickEvent(
-            () {
+            () async {
               AppTheme.changeThemeMode();
-              Get.forceAppUpdate();
+              await Get.forceAppUpdate();
             },
           ),
           GetBuilder<MainController>(
@@ -46,14 +46,5 @@ class MainPage extends BaseState<MainController> {
   }
 
   @override
-  MainController initViewModel() => MainController();
+  MainController initController() => MainController();
 }
-
-// class MainPage extends GetView<MainController> {
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     controller.login();
-//     return Container();
-//   }
-// }

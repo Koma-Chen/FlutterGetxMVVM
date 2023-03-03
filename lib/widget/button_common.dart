@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutterdemo/config/resource_mananger.dart';
-import 'package:flutterdemo/util/margin_padding_util.dart';
+import 'package:flutterdemo/theme/app_theme.dart';
 import 'package:flutterdemo/util/extension/extension_util.dart';
+import 'package:flutterdemo/util/extension/widget_extension.dart';
+import 'package:flutterdemo/util/margin_padding_util.dart';
 import 'package:flutterdemo/widget/text/text_common.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ButtonCommon extends StatelessWidget {
   final Color? color;
@@ -22,7 +22,7 @@ class ButtonCommon extends StatelessWidget {
   final double? borderRadios;
   final BoxDecoration? boxDecoration;
 
-  ButtonCommon({
+  const ButtonCommon({
     Key? key,
     this.color,
     this.width,
@@ -30,8 +30,8 @@ class ButtonCommon extends StatelessWidget {
     this.margin,
     this.fontSize,
     this.medium = false,
-    @required this.text,
-    @required this.onTap,
+    required this.text,
+    required this.onTap,
     this.fontWeight,
     this.fontHeight,
     this.fontColor,
@@ -42,23 +42,24 @@ class ButtonCommon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        child: Container(
-            height: height ?? 50.height,
-            decoration: boxDecoration ??
-                BoxDecoration(
-                    color: color ?? ColorsHelper.primaryColor,
-                    borderRadius: BorderRadius.circular(
-                        borderRadios ?? (height ?? 44 * 0.5))),
-            width: width ?? double.infinity,
-            margin: margin,
-            padding: padding,
-            child: Center(
-                child: TextCommon(text ?? "",
-                    size: fontSize,
-                    fontWeight: fontWeight,
-                    color: fontColor,
-                    lineHeight: fontHeight))));
+    return Container(
+      decoration: boxDecoration ??
+          BoxDecoration(
+              color: color ?? AppTheme.themeColor.textPrimary,
+              borderRadius: BorderRadius.circular(borderRadios ?? 5.sp)),
+      width: width ?? double.infinity,
+      margin: margin,
+      padding:
+          padding ?? MarginPaddingUtil.symmetric(vertical: 20, horizontal: 30),
+      child: TextCommon(
+        text ?? "",
+        size: fontSize,
+        fontWeight: fontWeight,
+        color: fontColor ?? AppTheme.themeColor.textPrimary,
+        lineHeight: fontHeight,
+        align: TextAlign.center,
+      ),
+    ).addClickEvent(() => onTap?.call());
   }
 }
 
@@ -79,14 +80,14 @@ class OutlineButtonCommon extends StatelessWidget {
   final FontWeight? fontWeight;
   final BoxDecoration? boxDecoration;
 
-  OutlineButtonCommon({
+  const OutlineButtonCommon({
     Key? key,
     this.width,
     this.height,
     this.margin,
     this.fontSize,
-    @required this.text,
-    @required this.onTap,
+    required this.text,
+    required this.onTap,
     this.borderRadios,
     this.textColor,
     this.borderColor,
@@ -102,7 +103,7 @@ class OutlineButtonCommon extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         child: Container(
-            width: width ?? ScreenUtil().screenWidth,
+            width: width ?? Get.width,
             height: height ?? 50.height,
             alignment: Alignment.center,
             margin: margin,
@@ -111,14 +112,14 @@ class OutlineButtonCommon extends StatelessWidget {
                 BoxDecoration(
                     color: backgroundColor ?? Colors.transparent,
                     border: Border.all(
-                        color: borderColor ?? Color(0xFFE5E5E5),
+                        color: backgroundColor ?? AppTheme.themeColor.textPrimary,
                         width: borderWidth ?? 1),
                     borderRadius: BorderRadius.circular(borderRadios ?? 5)),
             child: TextCommon(
               text ?? "",
               size: fontSize,
               lineHeight: fontHeight,
-              color: textColor,
+              color: textColor ?? AppTheme.themeColor.textPrimary,
               fontWeight: fontWeight,
             )));
   }

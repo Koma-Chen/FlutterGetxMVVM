@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 class DioLogger extends Interceptor {
   final bool request;
@@ -15,10 +17,6 @@ class DioLogger extends Interceptor {
   final bool compact;
   final int maxWidth;
   void Function(Object object) logPrint;
-
-  DateTime timeRequest = DateTime.now();
-
-  // final isDebug = true;
 
   DioLogger(
       {this.request = true,
@@ -34,8 +32,7 @@ class DioLogger extends Interceptor {
   @override
   Future onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    // if (options.path.contains("babyManagementList")) return;
-    timeRequest = DateTime.now();
+    options.extra['request_start_time'] = DateTime.now().millisecondsSinceEpoch;
     if (request) {
       _printRequestHeader(options);
     }
@@ -43,11 +40,11 @@ class DioLogger extends Interceptor {
       _printMapAsTable(options.queryParameters, header: 'Query Headers');
       final requestHeaders = {};
       requestHeaders.addAll(options.headers);
-      requestHeaders['contentType'] = options.contentType?.toString();
-      requestHeaders['responseType'] = options.responseType.toString();
-      requestHeaders['followRedirects'] = options.followRedirects;
-      requestHeaders['connectTimeout'] = options.connectTimeout;
-      requestHeaders['receiveTimeout'] = options.receiveTimeout;
+      // requestHeaders['contentType'] = options.contentType?.toString();
+      // requestHeaders['responseType'] = options.responseType.toString();
+      // requestHeaders['followRedirects'] = options.followRedirects;
+      // requestHeaders['connectTimeout'] = options.connectTimeout;
+      // requestHeaders['receiveTimeout'] = options.receiveTimeout;
       _printMapAsTable(requestHeaders, header: 'Headers');
       _printMapAsTable(options.extra, header: 'Extras');
     }
@@ -71,7 +68,7 @@ class DioLogger extends Interceptor {
   @override
   Future onError(DioError err, ErrorInterceptorHandler handler) async {
     if (error) {
-      if (err.type == DioErrorType.response) {
+      if (err.type == DioErrorType.badResponse) {
         final uri = err.response?.requestOptions.uri;
         _printBoxed(
             header:
@@ -84,7 +81,8 @@ class DioLogger extends Interceptor {
         _printLine('╚');
         logPrint('');
       } else {
-        _printBoxed(header: 'DioError ║ ${err.type}', text: err.message);
+        _printBoxed(
+            header: 'DioError ║ ${err.type}', text: err.message ?? "unknow");
       }
     }
     return handler.next(err);
@@ -93,7 +91,6 @@ class DioLogger extends Interceptor {
   @override
   Future onResponse(
       Response response, ResponseInterceptorHandler handler) async {
-    // if (response.request.path.contains("babyManagementList")) return;
     _printResponseHeader(response);
     if (responseHeader) {
       final responseHeaders = <String, String>{};
@@ -106,8 +103,10 @@ class DioLogger extends Interceptor {
       logPrint('╔ Body');
       logPrint('║');
       _printResponse(response);
+      final int requestStartTime =
+          response.requestOptions.extra['request_start_time'];
       logPrint(
-          '║requestTime:${DateTime.now().difference(timeRequest).inMilliseconds}');
+          '║${response.requestOptions.uri} response time: ${DateTime.now().millisecondsSinceEpoch - requestStartTime}ms');
       logPrint('║');
       _printLine('╚');
     }
@@ -246,7 +245,7 @@ class DioLogger extends Interceptor {
   }
 
   bool _canFlattenList(List list) {
-    return (list.length < 10 && list.toString().length < maxWidth);
+    return list.length < 10 && list.toString().length < maxWidth;
   }
 
   void _printMapAsTable(Map map, {required String header}) {

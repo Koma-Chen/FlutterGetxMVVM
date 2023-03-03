@@ -1,77 +1,69 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutterdemo/config/constant.dart';
 import 'package:flutterdemo/generated/json/base/json_convert_content.dart';
+import 'package:flutterdemo/util/common_util.dart';
 import 'package:flutterdemo/util/http/app_dio.dart';
 import 'package:flutterdemo/util/http/default_http_transformer.dart';
 import 'package:flutterdemo/util/http/http_config.dart';
 import 'package:flutterdemo/util/http/http_exception.dart';
 import 'package:flutterdemo/util/http/http_response.dart';
-import 'package:flutterdemo/util/log_util.dart';
 
 class HttpClient {
-  late final AppDio _dio;
+  late final AppDio dio;
 
   HttpClient({BaseOptions? options, HttpConfig? dioConfig})
-      : _dio = AppDio(options: options, dioConfig: dioConfig);
+      : dio = AppDio(options: options, dioConfig: dioConfig);
 
-  Future<T?> get<T>(String uri,
-      {Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken,
-      ProgressCallback? onReceiveProgress,
-      HttpTransformer? httpTransformer}) async {
-    // try {
-    var response = await _dio.get(
-      uri,
-      queryParameters: queryParameters,
-      options: options,
-      cancelToken: cancelToken,
-      onReceiveProgress: onReceiveProgress,
-    );
-    return JsonConvert.fromJsonAsT<T>(jsonDecode(response.toString())['data']);
-    // } on Exception catch (e) {
-    //   return handleException(e);
-    // }
-  }
+  Future<T?> get<T>(
+    String uri, {
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
+    HttpTransformer? httpTransformer,
 
-  Future<T?> post<T>(String uri,
-      {dynamic data,
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken,
-      ProgressCallback? onSendProgress,
-      ProgressCallback? onReceiveProgress,
-      HttpTransformer? httpTransformer}) async {
+    /// 是否需要自动转换json为实体类，比如List<List>这种数据结构就无法转换，只能返回调用方手动解析
+    bool needJsonConvert = true,
+  }) async {
     try {
-      final response = await _dio.post(
+      final response = await dio.get(
         uri,
-        data: data,
         queryParameters: queryParameters,
         options: options,
         cancelToken: cancelToken,
-        onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      return JsonConvert.fromJsonAsT<T>(
-          handleResponse<T>(response, httpTransformer: httpTransformer).data);
+      final HttpResponse httpResponse =
+          handleResponse<T>(response, httpTransformer: httpTransformer);
+      if (httpResponse.ok) {
+        return when(needJsonConvert,
+                JsonConvert.fromJsonAsT<T>(httpResponse.data)) ??
+            httpResponse.data;
+      } else {
+        throw httpResponse.error ?? UnknownException();
+      }
     } on Exception catch (e) {
       throw _parseException(e);
     }
   }
 
-  Future<HttpResponse> patch(String uri,
-      {data,
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken,
-      ProgressCallback? onSendProgress,
-      ProgressCallback? onReceiveProgress,
-      HttpTransformer? httpTransformer}) async {
-    assert(data != null);
+  Future<T?> post<T>(
+    String uri, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+    HttpTransformer? httpTransformer,
+
+    /// 是否需要自动转换json为实体类，比如List<List>这种数据结构就无法转换，只能返回调用方手动解析
+    bool needJsonConvert = true,
+  }) async {
     try {
-      var response = await _dio.patch(
+      final response = await dio.post(
         uri,
         data: data,
         queryParameters: queryParameters,
@@ -80,76 +72,19 @@ class HttpClient {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      return handleResponse(response, httpTransformer: httpTransformer);
+      final HttpResponse httpResponse =
+          handleResponse<T>(response, httpTransformer: httpTransformer);
+      if (httpResponse.ok) {
+        if (needJsonConvert) {
+          return JsonConvert.fromJsonAsT<T>(httpResponse.data);
+        } else {
+          return httpResponse.data;
+        }
+      } else {
+        throw httpResponse.error ?? UnknownException();
+      }
     } on Exception catch (e) {
-      return handleException(e);
-    }
-  }
-
-  Future<T?> delete<T>(String uri,
-      {data,
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken,
-      HttpTransformer? httpTransformer}) async {
-    // try {
-    var response = await _dio.delete(
-      uri,
-      data: data,
-      queryParameters: queryParameters,
-      options: options,
-      cancelToken: cancelToken,
-    );
-    return JsonConvert.fromJsonAsT<T>(jsonDecode(response.toString())['data']);
-    // } on Exception catch (e) {
-    //   return handleException(e);
-    // }
-  }
-
-  Future<T?> put<T>(String uri,
-      {data,
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken,
-      HttpTransformer? httpTransformer}) async {
-    // try {
-    var response = await _dio.put(
-      uri,
-      data: data,
-      queryParameters: queryParameters,
-      options: options,
-      cancelToken: cancelToken,
-    );
-    return JsonConvert.fromJsonAsT<T>(jsonDecode(response.toString())['data']);
-    // } on Exception catch (e) {
-    //   return handleException(e);
-    // }
-  }
-
-  Future<Response> download(String urlPath, savePath,
-      {ProgressCallback? onReceiveProgress,
-      Map<String, dynamic>? queryParameters,
-      CancelToken? cancelToken,
-      bool deleteOnError = true,
-      String lengthHeader = Headers.contentLengthHeader,
-      data,
-      Options? options,
-      HttpTransformer? httpTransformer}) async {
-    try {
-      var response = await _dio.download(
-        urlPath,
-        savePath,
-        onReceiveProgress: onReceiveProgress,
-        queryParameters: queryParameters,
-        cancelToken: cancelToken,
-        deleteOnError: deleteOnError,
-        lengthHeader: lengthHeader,
-        data: data,
-        options: data,
-      );
-      return response;
-    } catch (e) {
-      throw e;
+      throw _parseException(e);
     }
   }
 
@@ -168,20 +103,14 @@ class HttpClient {
           UnauthorisedException(message: "没有权限", code: response.statusCode));
     }
     // 接口调用成功
-    if (_isRequestSuccess(response.statusCode)) {
+    if (_isRequestSuccess(response.statusCode, response.data['code'])) {
       return httpTransformer.parse(response);
     } else {
-      LogUtil.d("response.statusMessage：${response.statusMessage}");
       // 接口调用失败
       return HttpResponse.failure(
-          errorMsg: response.statusMessage, errorCode: response.statusCode);
+          errorMsg: response.data?['message'] ?? response.statusMessage,
+          errorCode: response.data?['code'] ?? response.statusCode);
     }
-  }
-
-  HttpResponse handleException(Exception exception) {
-    HttpException parseException = _parseException(exception);
-    print("parseException:${parseException}");
-    return HttpResponse.failureFromError(parseException);
   }
 
   /// 鉴权失败
@@ -190,22 +119,25 @@ class HttpClient {
   }
 
   /// 请求成功
-  bool _isRequestSuccess(int? statusCode) {
-    return statusCode != null && statusCode >= 200 && statusCode < 300;
+  bool _isRequestSuccess(int? statusCode, int bizCode) {
+    return statusCode != null &&
+        statusCode >= 200 &&
+        statusCode < 300 &&
+        DefaultHttpTransformer.successCode.contains(bizCode);
   }
 
   HttpException _parseException(Exception error) {
     if (error is DioError) {
       switch (error.type) {
-        case DioErrorType.connectTimeout:
-        case DioErrorType.receiveTimeout:
+        case DioErrorType.connectionTimeout:
         case DioErrorType.sendTimeout:
+        case DioErrorType.receiveTimeout:
           return NetworkException(message: error.message);
-        case DioErrorType.cancel:
-          return CancelException(error.message);
-        case DioErrorType.response:
+        case DioErrorType.badCertificate:
+          return BadCertificateException(error.message);
+        case DioErrorType.badResponse:
           try {
-            int? errCode = error.response?.statusCode;
+            final int? errCode = error.response?.statusCode;
             switch (errCode) {
               case 400:
                 return BadRequestException(message: "请求语法错误", code: errCode);
@@ -232,8 +164,11 @@ class HttpClient {
           } on Exception catch (_) {
             return UnknownException(error.message);
           }
-
-        case DioErrorType.other:
+        case DioErrorType.cancel:
+          return CancelException(error.message);
+        case DioErrorType.connectionError:
+          return NetworkException(message: error.message);
+        case DioErrorType.unknown:
           if (error.error is SocketException) {
             return NetworkException(message: error.message);
           } else {
@@ -242,6 +177,9 @@ class HttpClient {
         default:
           return UnknownException(error.message);
       }
+    } else if (error is HttpException) {
+      if (error.code == Constant.TOKEN_EXPIRED_CODE) {}
+      return error;
     } else {
       return UnknownException(error.toString());
     }

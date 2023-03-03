@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutterdemo/mvvm/view_state.dart';
 import 'package:flutterdemo/util/extension/extension_util.dart';
-import 'package:flutterdemo/util/toast_util.dart';
 import 'package:flutterdemo/widget/dialog/dialog_helper.dart';
 import 'package:get/get.dart';
 
 class BaseController extends GetxController {
+
+  String updateRootID = "updateRootID";
+
   /// 防止页面销毁后,异步任务才完成,导致报错
   bool disposed = false;
 
@@ -46,26 +47,18 @@ class BaseController extends GetxController {
 
   void setIdle() {
     viewState = ViewState.idle;
-    SmartDialog.dismiss();
+    DialogHelper.dismiss();
   }
 
   void setBusy({String? title, int? seconds}) {
     viewState = ViewState.busy;
-    ToastUtil.showLoading(title: title ?? "加载中...");
+    DialogHelper.showLoading(title: title ?? "加载中...");
   }
 
   void setEmpty() {
     viewState = ViewState.empty;
     DialogHelper.dismiss();
   }
-
-  void setUnAuthorized() {
-    viewState = ViewState.unAuthorized;
-    onUnAuthorizedException();
-  }
-
-  /// 未授权的回调
-  void onUnAuthorizedException() {}
 
   // [e]分类Error和Exception两种
   void setError(dynamic e, dynamic stackTrace, {String? message}) {

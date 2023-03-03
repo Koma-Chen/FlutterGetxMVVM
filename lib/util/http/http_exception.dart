@@ -46,3 +46,7 @@ class BadResponseException extends HttpException {
 
   BadResponseException([this.data]) : super();
 }
+
+class BadCertificateException extends HttpException {
+  BadCertificateException([String? message]) : super(message);
+}
